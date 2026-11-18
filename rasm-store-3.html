@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="فروشگاه رسم؛ عرضه پوشاک مذهبی و فرهنگی شامل تیشرت، هودی و پوشاک با طرح‌های الهام‌بخش." />
+  <meta name="theme-color" content="#66865B" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%2366865B'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='white' font-family='Tahoma'%3E%D8%B1%3C/text%3E%3C/svg%3E">
+  <title>رسم | پوشاک مذهبی و فرهنگی</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#F7F1E9',
+            terracotta: '#66865B',
+            'terra-dark': '#496B45',
+            'terra-light': '#A9BE9A',
+            beige: '#D4B896',
+            'warm-brown': '#8B6F5C',
+            'warm-gray': '#4A4039',
+            soft: '#EDE4D9',
+            gold: '#C9A66B'
+          },
+          fontFamily: { vazir: ['Vazirmatn', 'Tahoma', 'sans-serif'] },
+          boxShadow: {
+            soft: '0 12px 40px -12px rgba(102, 134, 91, 0.28)',
+            card: '0 8px 30px -10px rgba(0,0,0,0.08)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Vazirmatn', Tahoma, sans-serif; }
+    body { background-color: #F7F1E9; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 7px; }
+    ::-webkit-scrollbar-track { background: #F7F1E9; }
+    ::-webkit-scrollbar-thumb { background: #66865B; border-radius: 10px; }
+
+    .shine-btn { position: relative; overflow: hidden; }
+    .shine-btn::after {
+      content: ''; position: absolute; top: 0; left: -100%; width: 55%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transform: skewX(-18deg); animation: shine 3.2s ease-in-out infinite;
+    }
+    @keyframes shine { 0% { left: -100%; } 45% { left: 140%; } 100% { left: 140%; } }
+
+    .product-card { transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
+    .product-card:hover { transform: translateY(-10px) scale(1.015); box-shadow: 0 22px 45px -12px rgba(102,134,91,0.28); }
+
+    .reveal { opacity: 0; transform: translateY(45px); transition: all 0.85s cubic-bezier(0.22, 1, 0.36, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    .hero-slide {
+      opacity: 0; transform: scale(1.05); transition: all 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .hero-slide.active { opacity: 1; transform: scale(1); pointer-events: auto; z-index: 2; }
+
+    .leaf-line { height: 64px; display: flex; align-items: center; justify-content: center; }
+
+    .carousel-track { display: flex; gap: 1.4rem; cursor: grab; user-select: none; width:max-content; }
+    #bestWrapper{overflow-x:auto;scrollbar-width:none;cursor:grab;touch-action:pan-y} #bestWrapper::-webkit-scrollbar{display:none} #bestTrack{transform:none!important}
+    .carousel-track.dragging { cursor: grabbing; }
+
+    .filter-panel { transform: translateX(100%); transition: transform 0.45s cubic-bezier(0.22,1,0.36,1); visibility: hidden; }
+    .filter-panel.open { transform: translateX(0); visibility: visible; }
+    .filter-overlay { opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+    .filter-overlay.open { opacity: 1; pointer-events: auto; }
+
+
+    .header-admin-btn{width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;color:#496B45;background:linear-gradient(145deg,#fffaf3,#efe3d5);border:1px solid #e5d4c2;box-shadow:0 4px 14px rgba(73,107,69,.10);transition:transform .25s ease,box-shadow .25s ease,color .25s ease}
+    .header-admin-btn:hover{transform:translateY(-2px) rotate(-12deg);color:#66865B;box-shadow:0 7px 20px rgba(73,107,69,.18)}
+    .chat-float-btn{left:auto!important;right:28px!important;background:linear-gradient(135deg,#66865B,#496B45)!important;box-shadow:0 8px 28px rgba(73,107,69,.38)!important}
+    .chat-float-btn:hover{box-shadow:0 12px 32px rgba(73,107,69,.5)!important}
+    @media(max-width:480px){.header-admin-btn{width:36px;height:36px}.chat-float-btn{right:16px!important;bottom:20px!important}.float-btn:not(.chat-float-btn){left:16px!important;bottom:20px!important}}
+    .float-btn {
+      position: fixed; bottom: 28px; left: 28px; z-index: 90;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: linear-gradient(135deg, #66865B, #496B45);
+      color: white; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 28px rgba(102,134,91,0.45);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: floatPulse 2.8s ease-in-out infinite;
+    }
+    .float-btn:hover { transform: scale(1.08); box-shadow: 0 12px 32px rgba(102,134,91,0.55); }
+    @keyframes floatPulse {
+      0%, 100% { box-shadow: 0 8px 28px rgba(102,134,91,0.4); }
+      50% { box-shadow: 0 8px 28px rgba(102,134,91,0.55), 0 0 0 12px rgba(102,134,91,0.12); }
+    }
+
+    input[type="range"] { -webkit-appearance: none; height: 5px; background: #EDE4D9; border-radius: 10px; outline: none; }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 18px; height: 18px; background: #66865B; border-radius: 50%; cursor: pointer;
+      box-shadow: 0 2px 10px rgba(102,134,91,0.4);
+    }
+
+    .modal-content { animation: modalIn 0.4s cubic-bezier(0.22,1,0.36,1); }
+    @keyframes modalIn { from { opacity: 0; transform: scale(0.94) translateY(18px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
+    .pulse-badge { animation: softPulse 2.5s ease-in-out infinite; }
+    @keyframes softPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(102,134,91,0.4); } 50% { box-shadow: 0 0 0 8px rgba(102,134,91,0); } }
+
+    .cat-active { background: #66865B !important; color: white !important; border-color: #66865B !important; }
+
+    :root { --leaf:#66865B; }
+    .benefit-card,.review-card{background:#fff;border:1px solid #e5eadf;border-radius:20px;padding:20px;box-shadow:0 8px 24px rgba(55,80,45,.06)}
+    .benefit-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:7px}.benefit-card span{font-size:27px}.benefit-card b{font-size:13px}.benefit-card small,.review-card small{font-size:11px;color:#71806b}
+    .review-card p{font-size:13px;line-height:2;min-height:58px;margin-bottom:15px}.review-card b{display:block;font-size:13px}.review-card small{display:block;margin-top:3px}
+    .meta-pill{background:#f0f4ed;border-radius:30px;padding:5px 9px;color:#496b45}
+    .gallery-thumb{width:66px;height:58px;flex:0 0 auto;border:2px solid transparent;border-radius:10px;overflow:hidden}.gallery-thumb img{width:100%;height:100%;object-fit:cover}.gallery-thumb.selected{border-color:#66865B}
+    .cart-drawer{transform:translateX(-105%);transition:transform .35s ease}.cart-drawer.open{transform:translateX(0)}
+    .qty-btn{width:25px;height:25px;border-radius:50%;background:#edf2e9;color:#496b45;font-weight:bold}
+    .cart-bump{animation:cartBump .45s ease}@keyframes cartBump{50%{transform:scale(1.45)}}
+    .added{background:#496b45!important;transform:scale(.98)}
+    .nature-leaf{position:fixed;top:-50px;z-index:40;pointer-events:none;font-size:20px;opacity:.55;animation:leafFall linear infinite;filter:drop-shadow(0 2px 3px #a9be9a)}
+    .checkout-input{width:100%;border:1px solid #dce5d5;background:#fff;border-radius:12px;padding:12px 14px;outline:none;transition:border .2s,box-shadow .2s;font-size:13px}
+    .checkout-input:focus{border-color:#66865B;box-shadow:0 0 0 3px rgba(102,134,91,.12)}
+    .demo-ribbon{background:linear-gradient(90deg,#fef3c7,#fffbeb);border:1px solid #f4d58b;color:#805b12;border-radius:14px;padding:11px 13px;font-size:12px;line-height:1.8}
+    @keyframes leafFall{0%{transform:translate3d(0,-8vh,0) rotate(0deg);opacity:0}10%{opacity:.55}50%{transform:translate3d(35px,50vh,0) rotate(180deg)}100%{transform:translate3d(-25px,110vh,0) rotate(360deg);opacity:0}}
+    .leaf-line svg{animation:leafSway 5s ease-in-out infinite;transform-origin:center}@keyframes leafSway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+
+    /* Customer gallery + support chat additions */
+    .verified-pill{display:inline-flex;align-items:center;gap:5px;background:#edf5e9;color:#496b45;border:1px solid #d7e7cf;border-radius:999px;padding:4px 9px;font-size:10px;font-weight:700}
+    .customer-shot{position:relative;overflow:hidden;border-radius:20px;background:#e9e4dc;box-shadow:0 10px 28px rgba(55,80,45,.10);transition:transform .45s,box-shadow .45s}
+    .customer-shot:hover{transform:translateY(-8px) rotate(-.4deg);box-shadow:0 18px 38px rgba(55,80,45,.18)}
+    .customer-shot img{width:100%;height:270px;object-fit:cover;transition:transform .8s}
+    .customer-shot:hover img{transform:scale(1.08)}
+    .customer-shot:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(25,35,20,.72),transparent 58%);pointer-events:none}
+    .chat-panel{position:fixed;left:24px;bottom:98px;width:min(370px,calc(100vw - 32px));height:480px;max-height:70vh;background:#fff;border:1px solid #e5eadf;border-radius:24px;box-shadow:0 24px 70px rgba(30,45,25,.22);z-index:110;display:none;overflow:hidden;transform-origin:bottom left}
+    .chat-panel.open{display:flex;flex-direction:column;animation:chatPop .32s cubic-bezier(.2,.8,.2,1)}
+    @keyframes chatPop{from{opacity:0;transform:translateY(16px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .chat-messages{flex:1;overflow:auto;padding:16px;background:linear-gradient(180deg,#fbfcf9,#f4f6f0)}
+    .chat-bubble{max-width:86%;padding:10px 13px;border-radius:16px;margin-bottom:10px;font-size:12px;line-height:1.9;box-shadow:0 3px 10px rgba(0,0,0,.04)}
+    .chat-bubble.customer{background:#66865B;color:white;margin-right:auto;border-bottom-left-radius:5px}
+    .chat-bubble.agent{background:white;color:#4A4039;margin-left:auto;border:1px solid #edf0e9;border-bottom-right-radius:5px}
+    .chat-input{border:1px solid #e5eadf;border-radius:999px;padding:10px 14px;min-width:0;flex:1;outline:none;font-size:12px}
+    .chat-input:focus{border-color:#66865B;box-shadow:0 0 0 3px rgba(102,134,91,.10)}
+    @media(prefers-reduced-motion:reduce){.customer-shot,.customer-shot img,.chat-panel.open{animation:none;transition:none}}
+
+  </style>
+
+<style>
+/* Premium shop interactions */
+.best-ribbon{position:absolute;z-index:5;top:14px;right:14px;display:flex;align-items:center;gap:7px;padding:8px 13px;border-radius:999px;background:linear-gradient(120deg,#496B45,#7fa072,#58794f);color:#fff;font-size:11px;font-weight:800;box-shadow:0 7px 22px #496B4555;animation:bestPulse 2.4s ease-in-out infinite;letter-spacing:.2px}
+.best-ribbon i{font-style:normal;display:inline-block;animation:bestSpark 1.8s ease-in-out infinite}
+@keyframes bestPulse{0%,100%{transform:translateY(0) scale(1);box-shadow:0 7px 22px #496B4540}50%{transform:translateY(-3px) scale(1.045);box-shadow:0 10px 28px #496B4570}}
+@keyframes bestSpark{0%,100%{transform:rotate(-12deg) scale(1)}50%{transform:rotate(15deg) scale(1.25)}}
+.product-card{position:relative;transition:transform .35s,box-shadow .35s}.product-card:hover{transform:translateY(-7px);box-shadow:0 18px 45px #5b49301b}
+.product-actions{position:absolute;left:12px;top:12px;z-index:7;display:flex;gap:7px}.product-action{width:36px;height:36px;border-radius:50%;background:#fffF;backdrop-filter:blur(10px);display:grid;place-items:center;box-shadow:0 4px 15px #0002;transition:.25s;font-size:17px}.product-action:hover{transform:scale(1.12);background:#fff}.product-action.active{background:#66865B;color:white}
+.compare-dock{position:fixed;z-index:90;bottom:18px;left:50%;transform:translate(-50%,140%);transition:.4s;background:#fffdf8;border:1px solid #e7d8c9;box-shadow:0 15px 45px #44332230;border-radius:22px;padding:12px 16px;display:flex;align-items:center;gap:12px;max-width:calc(100vw - 24px)}.compare-dock.show{transform:translate(-50%,0)}
+.admin-fab{position:fixed;z-index:95;left:18px;bottom:20px;border:1px solid #ffffff70;background:linear-gradient(135deg,#56724e,#8da17c);color:white;padding:12px 17px;border-radius:999px;box-shadow:0 10px 28px #526a4650;font-weight:800;animation:adminFloat 4s ease-in-out infinite}@keyframes adminFloat{50%{transform:translateY(-5px)}}
+.premium-modal{position:fixed;inset:0;z-index:160;background:#201b18a8;backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:16px}.premium-modal.open{display:flex}.premium-box{width:min(920px,100%);max-height:90vh;overflow:auto;background:#fffdf8;border-radius:25px;padding:22px;box-shadow:0 25px 80px #0004;animation:modalIn .35s ease}@keyframes modalIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+.admin-input{width:100%;border:1px solid #e7dcd0;border-radius:12px;padding:11px 13px;background:white;outline:none}.admin-input:focus{border-color:#66865B;box-shadow:0 0 0 3px #66865B18}.admin-stat{background:linear-gradient(145deg,#fff,#f4eee5);border:1px solid #eee3d7;border-radius:18px;padding:15px}.admin-tab{padding:9px 13px;border-radius:999px;background:#f1e9df;font-size:12px}.admin-tab.active{background:#496B45;color:#fff}.swatch{width:23px;height:23px;border-radius:50%;border:2px solid white;box-shadow:0 0 0 1px #cbb9a7;display:inline-block}
+@media(prefers-reduced-motion:reduce){.best-ribbon,.admin-fab,.product-card{animation:none;transition:none}}
+</style>
+
+<style>
+/* v3 fixes & additions */
+section[id]{scroll-margin-top:84px}
+.chat-panel{left:auto;right:24px;transform-origin:bottom right}
+.chat-bubble{white-space:normal;word-break:break-word}
+@media(max-width:480px){.chat-panel{right:16px;bottom:88px}}
+.best-title-icon{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#66865B,#496B45);color:#fff;font-size:16px;flex:0 0 auto}
+.reveal.product-card{transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1),box-shadow .35s}
+.reveal.active.product-card:hover{transform:translateY(-7px)}
+#bestWrapper{touch-action:auto!important;padding:12px 4px 20px}
+#bestWrapper img{-webkit-user-drag:none}
+.oos-overlay{position:absolute;inset:0;z-index:4;background:rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;pointer-events:none}
+.oos-pill{background:#4A4039;color:#fff;padding:7px 16px;border-radius:999px;font-size:12px;font-weight:700}
+.stock-low{color:#b45309;font-size:11px;font-weight:600}
+.price-old{color:#9a8f86;text-decoration:line-through;font-size:12px;margin-right:8px;font-weight:400}
+.discount-pill{background:#b45309;color:#fff;font-size:11px;padding:3px 9px;border-radius:999px;font-weight:700}
+.faq-item{background:#fff;border:1px solid #e5eadf;border-radius:16px;padding:0 18px;margin-bottom:10px}
+.faq-item summary{cursor:pointer;padding:15px 0;font-weight:600;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'＋';color:#66865B;transition:transform .3s;flex:0 0 auto}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item p{font-size:13px;line-height:2;color:#6b625b;padding-bottom:15px}
+.to-top{position:fixed;left:36px;bottom:98px;z-index:85;width:42px;height:42px;border-radius:50%;background:#fff;color:#496B45;border:1px solid #dce5d5;box-shadow:0 6px 18px rgba(55,80,45,.15);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;transform:translateY(8px)}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+@media(max-width:480px){.to-top{left:24px;bottom:88px}}
+.toast{position:fixed;top:84px;left:50%;transform:translate(-50%,-14px);background:#2f3f2b;color:#fff;padding:10px 18px;border-radius:999px;font-size:12px;z-index:300;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;max-width:calc(100vw - 32px);text-align:center;line-height:1.8}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+button:disabled{cursor:not-allowed}
+</style>
+<style>
+/* v4: trust section, chat FAQ, category pages */
+.trust-card{background:#fff;border:1px solid #e5eadf;border-radius:24px;padding:26px 22px;box-shadow:0 8px 24px rgba(55,80,45,.06);transition:transform .4s,box-shadow .4s,opacity .85s}
+.trust-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(55,80,45,.14)}
+.trust-card h3{font-weight:700;font-size:15px;margin-top:14px}
+.trust-card p{font-size:12.5px;line-height:2;color:#6b7a66;margin-top:6px}
+.trust-icon{width:54px;height:54px;border-radius:18px;display:grid;place-items:center;font-size:25px;background:linear-gradient(145deg,#eef4ea,#dbe8d3);transition:transform .4s}
+.trust-card:hover .trust-icon{transform:rotate(-8deg) scale(1.08)}
+.chat-panel{height:540px;max-height:82vh}
+.chat-faq{padding:9px 12px 4px;border-top:1px solid #edf0e9;background:#f7faf4;max-height:118px;overflow-y:auto}
+.chat-faq small{display:block;font-size:10px;color:#71806b;margin-bottom:6px}
+.faq-chip{font-size:11px;line-height:1.7;border:1px solid #cfe0c6;background:#fff;color:#496b45;border-radius:999px;padding:5px 11px;margin:0 0 6px 6px;transition:background .2s,color .2s}
+.faq-chip:hover{background:#66865B;color:#fff}
+.cat-count{display:block;font-size:11px;color:#71806b;margin-top:-6px}
+</style>
+<style>
+/* v5: hot bestsellers */
+.fire-text{background:linear-gradient(90deg,#e62e00,#ff8a00,#ffc400,#ff8a00,#e62e00);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:fireText 3s linear infinite}
+@keyframes fireText{to{background-position:200% 0}}
+.best-title-icon{background:linear-gradient(135deg,#ff6a00,#e62e00)!important;font-size:20px!important;animation:fireBeat 1.2s ease-in-out infinite;box-shadow:0 0 18px rgba(255,100,0,.65)}
+@keyframes fireBeat{0%,100%{transform:scale(1) rotate(-3deg)}50%{transform:scale(1.12) rotate(3deg)}}
+.best-ribbon{background:linear-gradient(120deg,#e62e00,#ff6a00,#ffb300,#ff6a00,#e62e00);background-size:220% 100%;animation:fireRibbon 2.4s linear infinite;text-shadow:0 1px 3px rgba(120,20,0,.6);border:1px solid rgba(255,255,255,.35)}
+@keyframes fireRibbon{0%{background-position:0% 50%;transform:translateY(0) scale(1);box-shadow:0 6px 20px rgba(255,90,0,.55)}50%{background-position:100% 50%;transform:translateY(-3px) scale(1.06);box-shadow:0 10px 30px rgba(255,120,0,.85),0 0 22px rgba(255,170,0,.6)}100%{background-position:200% 50%;transform:translateY(0) scale(1);box-shadow:0 6px 20px rgba(255,90,0,.55)}}
+.best-ribbon i{display:inline-block;transform-origin:50% 90%;animation:flameFlicker .9s ease-in-out infinite;filter:drop-shadow(0 0 4px #ffcf33)}
+@keyframes flameFlicker{0%,100%{transform:scale(1) rotate(-4deg)}25%{transform:scale(1.18,1.3) rotate(3deg)}50%{transform:scale(.95,1.12) rotate(-2deg)}75%{transform:scale(1.12,1.25) rotate(5deg)}}
+@media(prefers-reduced-motion:reduce){.best-ribbon,.best-ribbon i,.fire-text,.best-title-icon{animation:none!important}}
+</style>
+</head>
+<body class="font-vazir text-warm-gray antialiased">
+  <div id="natureLeaves" aria-hidden="true"></div>
+
+  <!-- DEMO SUPPORT CHAT -->
+  <button type="button" id="supportChatToggle" class="float-btn chat-float-btn" aria-label="گفت‌وگو با پشتیبانی" title="گفت‌وگو با پشتیبانی"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.5 8.5 0 0 1-9 8.5 9.5 9.5 0 0 1-4-.9L3 21l1.9-4.5A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 12h.01M12 12h.01M16 12h.01" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+  <section id="supportChatPanel" class="chat-panel" aria-label="پنل گفت‌وگو">
+    <div class="bg-terracotta text-white p-4 flex items-center justify-between"><div><b class="text-sm">پشتیبانی فروشگاه رسم</b><p class="text-[10px] text-white/80 mt-1">پاسخ‌گوی شما هستیم · دموی نمایشی</p></div><button type="button" id="supportChatClose" class="w-8 h-8 rounded-full bg-white/15" aria-label="بستن">✕</button></div>
+    <div id="supportChatMessages" class="chat-messages" aria-live="polite"></div>
+    <div id="chatFaq" class="chat-faq" aria-label="سؤالات متداول"></div>
+    <form id="supportChatForm" class="p-3 flex items-center gap-2 border-t border-soft"><input id="supportChatInput" class="chat-input" placeholder="پیامت رو بنویس..." autocomplete="off" required><button class="w-10 h-10 shrink-0 rounded-full bg-terracotta text-white" aria-label="ارسال پیام">➤</button></form>
+    <p class="text-[9px] text-center text-warm-gray/45 pb-2">نسخه نمایشی: پیام‌ها فقط در همین مرورگر می‌مانند.</p>
+  </section>
+  <button type="button" id="toTop" class="to-top" aria-label="بازگشت به بالا">↑</button>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-cream/90 backdrop-blur-xl border-b border-soft/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-[72px]">
+        <a href="#" class="flex items-center gap-2.5 group" onclick="showAll()">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-terracotta to-terra-dark flex items-center justify-center text-white text-lg font-bold shadow-soft group-hover:scale-105 transition">ر</div>
+          <div>
+            <span class="text-xl font-bold text-terra-dark tracking-tight">رسم</span>
+            <span class="block text-[10px] text-beige -mt-0.5">پوشاک مذهبی و فرهنگی</span>
+          </div>
+        </a>
+        <nav class="hidden md:flex items-center gap-8 text-[15px] font-medium">
+          <a href="#home" class="hover:text-terracotta transition">خانه</a>
+          <a href="#categories" class="hover:text-terracotta transition">دسته‌بندی</a>
+          <a href="#bestsellers" class="hover:text-terracotta transition">پرفروش‌ها</a>
+          <a href="#products" class="hover:text-terracotta transition">محصولات</a>
+          <a href="#faq" data-open-chat class="hover:text-terracotta transition">سؤالات متداول</a>
+          <a href="#contact" class="hover:text-terracotta transition">تماس</a>
+        </nav>
+        <div class="flex items-center gap-2">
+          <button id="menuToggle" type="button" class="md:hidden p-2.5 rounded-full hover:bg-soft/80 transition" aria-label="منو"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+          <button id="searchToggle" type="button" aria-label="جستجو" class="p-2.5 rounded-full hover:bg-soft/80 transition">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </button>
+          <button type="button" onclick="openAdmin()" class="header-admin-btn" aria-label="ورود به پنل مدیریت" title="پنل مدیریت">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path d="m19.4 15 .1.1a1.8 1.8 0 0 1-2.5 2.5l-.1-.1a1.8 1.8 0 0 0-3 .9v.2a1.8 1.8 0 0 1-3.6 0v-.2a1.8 1.8 0 0 0-3-.9l-.1.1a1.8 1.8 0 0 1-2.5-2.5l.1-.1a1.8 1.8 0 0 0-.9-3H3.7a1.8 1.8 0 0 1 0-3.6h.2a1.8 1.8 0 0 0 .9-3l-.1-.1a1.8 1.8 0 0 1 2.5-2.5l.1.1a1.8 1.8 0 0 0 3-.9v-.2a1.8 1.8 0 0 1 3.6 0v.2a1.8 1.8 0 0 0 3 .9l.1-.1a1.8 1.8 0 0 1 2.5 2.5l-.1.1a1.8 1.8 0 0 0 .9 3h.2a1.8 1.8 0 0 1 0 3.6h-.2a1.8 1.8 0 0 0-.9 3Z"/></svg>
+          </button>
+          <button id="cartOpen" class="p-2.5 rounded-full hover:bg-soft/80 transition relative" aria-label="سبد خرید">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+            <span id="cartCount" class="absolute -top-0.5 -left-0.5 min-w-5 h-5 px-1 bg-terracotta text-white text-[10px] rounded-full flex items-center justify-center font-bold pulse-badge">۰</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  <div id="searchBar" class="hidden border-t border-soft/60 bg-cream/95"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-2"><input id="searchInput" type="search" class="checkout-input" placeholder="جستجوی پوشاک (نام، طرح، رنگ، سایز...)" autocomplete="off" aria-label="جستجو"><button type="button" id="searchClear" class="px-4 py-3 text-xs rounded-xl bg-soft whitespace-nowrap">پاک کردن</button></div></div>
+    <nav id="mobileMenu" class="hidden md:hidden border-t border-soft/60 bg-cream" aria-label="منوی موبایل"><div class="px-4 py-3 grid grid-cols-2 gap-2 text-sm font-medium"><a href="#home" class="rounded-xl bg-white px-4 py-3 text-center">خانه</a><a href="#categories" class="rounded-xl bg-white px-4 py-3 text-center">دسته‌بندی</a><a href="#bestsellers" class="rounded-xl bg-white px-4 py-3 text-center">پرفروش‌ها</a><a href="#products" class="rounded-xl bg-white px-4 py-3 text-center">محصولات</a><a href="#faq" data-open-chat class="rounded-xl bg-white px-4 py-3 text-center">سؤالات متداول</a><a href="#contact" class="rounded-xl bg-white px-4 py-3 text-center">تماس</a></div></nav>
+  </header>
+
+  <div id="homeView">
+  <!-- HERO SLIDER -->
+  <section id="home" class="relative h-[560px] md:h-[640px] overflow-hidden">
+    <div class="hero-slide active" data-slide="0">
+      <div class="absolute inset-0">
+        <img src="data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover" alt="">
+        <div class="absolute inset-0 bg-gradient-to-l from-black/65 via-black/40 to-black/20"></div>
+      </div>
+      <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+        <div class="max-w-xl text-white space-y-5">
+          <span class="inline-block px-4 py-1.5 bg-white/15 backdrop-blur-md text-sm rounded-full border border-white/20">مجموعه جدید <span class="js-year">۱۴۰۵</span></span>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight drop-shadow-lg">پوشاکی با هویت<br><span class="text-terra-light">باور و اصالت</span></h1>
+          <p class="text-lg text-white/85 max-w-md">تیشرت‌ها و پوشاک فرهنگی با طرح‌هایی از ایمان، هویت و اصالت</p>
+          <a href="#products" class="shine-btn inline-flex items-center gap-2 px-8 py-3.5 bg-terracotta text-white rounded-full font-medium hover:bg-terra-dark transition shadow-lg">
+            مشاهده محصولات
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide" data-slide="1">
+      <div class="absolute inset-0">
+        <img src="data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover" alt="">
+        <div class="absolute inset-0 bg-gradient-to-l from-black/65 via-black/40 to-black/20"></div>
+      </div>
+      <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+        <div class="max-w-xl text-white space-y-5">
+          <span class="inline-block px-4 py-1.5 bg-white/15 backdrop-blur-md text-sm rounded-full border border-white/20">پرفروش‌ترین‌ها</span>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">باور خود را<br><span class="text-beige">با افتخار بپوش</span></h1>
+          <p class="text-lg text-white/85 max-w-md">طرح‌های خاص، چاپ باکیفیت و پارچه‌های راحت برای استفاده روزمره</p>
+          <a href="#bestsellers" class="shine-btn inline-flex items-center gap-2 px-8 py-3.5 bg-beige text-warm-gray rounded-full font-medium hover:bg-gold transition shadow-lg">مشاهده پرفروش‌ها</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide" data-slide="2">
+      <div class="absolute inset-0">
+        <img src="data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover" alt="">
+        <div class="absolute inset-0 bg-gradient-to-l from-black/65 via-black/40 to-black/20"></div>
+      </div>
+      <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+        <div class="max-w-xl text-white space-y-5">
+          <span class="inline-block px-4 py-1.5 bg-white/15 backdrop-blur-md text-sm rounded-full border border-white/20">طراحی مینیمال</span>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">سادگیِ معنادار<br><span class="text-white">برای استایل روزمره</span></h1>
+          <p class="text-lg text-white/85 max-w-md">استایل متفاوت با پیام‌هایی از فرهنگ، ایمان و هویت</p>
+          <a href="#products" class="shine-btn inline-flex items-center gap-2 px-8 py-3.5 bg-white text-terra-dark rounded-full font-medium hover:bg-cream transition shadow-lg">کشف مجموعه</a>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2.5 z-20">
+      <button class="hero-dot w-2.5 h-2.5 rounded-full transition-all duration-300" data-index="0" style="width:24px;background:#fff"></button>
+      <button class="hero-dot w-2.5 h-2.5 rounded-full bg-white/50 transition-all duration-300" data-index="1"></button>
+      <button class="hero-dot w-2.5 h-2.5 rounded-full bg-white/50 transition-all duration-300" data-index="2"></button>
+    </div>
+    <button id="heroPrev" class="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/35 transition z-20">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <button id="heroNext" class="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/35 transition z-20">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+  </section>
+
+  <!-- LEAF -->
+  <div class="leaf-line my-1">
+    <svg width="340" height="56" viewBox="0 0 340 56" fill="none">
+      <path d="M15 28 C90 8, 150 48, 170 28 C190 8, 250 48, 325 28" stroke="#66865B" stroke-width="1.4" stroke-opacity="0.4" fill="none"/>
+      <g transform="translate(155,12)">
+        <path d="M15 14 Q15 2 28 8 Q20 18 15 14" fill="#66865B" fill-opacity="0.5"/>
+        <path d="M15 14 Q15 2 2 8 Q10 18 15 14" fill="#66865B" fill-opacity="0.7"/>
+        <path d="M15 14 Q8 22 15 30 Q22 22 15 14" fill="#A9BE9A" fill-opacity="0.6"/>
+        <line x1="15" y1="6" x2="15" y2="28" stroke="#F7F1E9" stroke-width="1.3"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section id="categories" class="py-10 md:py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10 reveal">
+        <h2 class="text-2xl md:text-3xl font-bold">دسته‌بندی‌ها</h2>
+        <p class="text-warm-gray/65 mt-2 text-sm">روی هر دسته کلیک کنید تا صفحهٔ اختصاصی همان دسته باز شود</p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4" id="catGrid">
+        <button data-cat="tshirt" class="cat-btn group flex flex-col items-center gap-3 p-5 bg-white rounded-2xl shadow-card hover:shadow-soft transition product-card reveal"><div class="w-14 h-14 rounded-full bg-terracotta/12 flex items-center justify-center text-2xl">👕</div><span class="text-sm font-medium">تیشرت مذهبی</span></button>
+        <button data-cat="hoodie" class="cat-btn group flex flex-col items-center gap-3 p-5 bg-white rounded-2xl shadow-card hover:shadow-soft transition product-card reveal"><div class="w-14 h-14 rounded-full bg-beige/30 flex items-center justify-center text-2xl">🧥</div><span class="text-sm font-medium">هودی</span></button>
+        <button data-cat="sweatshirt" class="cat-btn group flex flex-col items-center gap-3 p-5 bg-white rounded-2xl shadow-card hover:shadow-soft transition product-card reveal"><div class="w-14 h-14 rounded-full bg-terracotta/12 flex items-center justify-center text-2xl">🧶</div><span class="text-sm font-medium">سویشرت</span></button>
+        <button data-cat="oversize" class="cat-btn group flex flex-col items-center gap-3 p-5 bg-white rounded-2xl shadow-card hover:shadow-soft transition product-card reveal"><div class="w-14 h-14 rounded-full bg-pink-100 flex items-center justify-center text-2xl">✨</div><span class="text-sm font-medium">اورسایز</span></button>
+        <button data-cat="polo" class="cat-btn group flex flex-col items-center gap-3 p-5 bg-white rounded-2xl shadow-card hover:shadow-soft transition product-card reveal"><div class="w-14 h-14 rounded-full bg-terracotta/12 flex items-center justify-center text-2xl">👔</div><span class="text-sm font-medium">پولوشرت</span></button>
+        <button data-cat="accessory" class="cat-btn group flex flex-col items-center gap-3 p-5 bg-white rounded-2xl shadow-card hover:shadow-soft transition product-card reveal"><div class="w-14 h-14 rounded-full bg-beige/30 flex items-center justify-center text-2xl">🧢</div><span class="text-sm font-medium">اکسسوری</span></button>
+      </div>
+    </div>
+  </section>
+
+  <div class="leaf-line">
+    <svg width="300" height="48" viewBox="0 0 300 48" fill="none">
+      <path d="M15 24 C70 6, 130 42, 150 24 C170 6, 230 42, 285 24" stroke="#66865B" stroke-width="1.3" stroke-opacity="0.35" fill="none"/>
+      <g transform="translate(138,12)"><path d="M12 12 Q12 2 22 7 Q16 16 12 12" fill="#66865B" fill-opacity="0.5"/><path d="M12 12 Q12 2 2 7 Q8 16 12 12" fill="#66865B" fill-opacity="0.7"/><path d="M12 12 Q6 18 12 24 Q18 18 12 12" fill="#A9BE9A" fill-opacity="0.55"/></g>
+    </svg>
+  </div>
+
+  <!-- TRUST / BENEFITS -->
+  <section class="py-8 px-4">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="benefit-card"><span>🌿</span><b>پارچه راحت و مناسب استفاده روزمره</b><small>راحتی در تمام طول روز</small></div>
+      <div class="benefit-card"><span>📦</span><b>بسته‌بندی شیک و امن</b><small>مناسب هدیه دادن</small></div>
+      <div class="benefit-card"><span>🧵</span><b>توجه به کیفیت چاپ و دوخت</b><small>کیفیت در تمام جزئیات</small></div>
+      <div class="benefit-card"><span>💬</span><b>راهنمایی پیش از خرید</b><small>برای انتخاب سایز و مدل</small></div>
+    </div>
+  </section>
+
+  <!-- BESTSELLERS with workshop background -->
+  <section id="bestsellers" class="py-14 md:py-20 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover opacity-25" alt="کارگاه">
+      <div class="absolute inset-0 bg-gradient-to-b from-cream/90 via-cream/75 to-cream/90"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between mb-8 reveal">
+        <div>
+          <div class="flex items-center gap-3"><span class="best-title-icon">🔥</span><div><h2 class="text-2xl md:text-3xl font-bold fire-text">داغ‌ترین پرفروش‌ها</h2><p class="text-warm-gray/65 mt-1 text-sm">انتخاب‌های داغی که همه سراغشان می‌روند 🔥</p></div></div>
+        </div>
+        <div class="flex gap-2">
+          <button id="bestPrev" class="w-10 h-10 rounded-full border border-soft bg-white flex items-center justify-center hover:bg-terracotta hover:text-white hover:border-terracotta transition">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <button id="bestNext" class="w-10 h-10 rounded-full border border-soft bg-white flex items-center justify-center hover:bg-terracotta hover:text-white hover:border-terracotta transition">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="overflow-hidden" id="bestWrapper">
+        <div class="carousel-track" id="bestTrack"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="leaf-line">
+    <svg width="320" height="50" viewBox="0 0 320 50" fill="none">
+      <path d="M18 25 C80 42, 140 8, 160 25 C180 42, 240 8, 302 25" stroke="#66865B" stroke-width="1.3" stroke-opacity="0.35" fill="none"/>
+      <g transform="translate(148,13)"><path d="M12 12 Q12 2 22 7 Q16 16 12 12" fill="#66865B" fill-opacity="0.5"/><path d="M12 12 Q12 2 2 7 Q8 16 12 12" fill="#66865B" fill-opacity="0.7"/><path d="M12 12 Q6 18 12 24 Q18 18 12 12" fill="#A9BE9A" fill-opacity="0.55"/></g>
+    </svg>
+  </div>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 reveal">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-bold" id="productsTitle">همه محصولات</h2>
+          <p class="text-warm-gray/65 mt-1 text-sm"><span id="productCount">۸</span> محصول <button type="button" id="clearView" class="hidden text-xs text-terracotta underline mr-3">نمایش همه محصولات</button></p>
+        </div>
+        <div class="flex items-center gap-3">
+          <select id="sortSelect" class="text-sm border border-soft rounded-full px-4 py-2.5 bg-white focus:outline-none focus:border-terracotta">
+            <option value="newest">جدیدترین</option>
+            <option value="price-asc">ارزان‌ترین</option>
+            <option value="price-desc">گران‌ترین</option>
+            <option value="popular">پرفروش‌ترین</option>
+          </select>
+          <button id="openFilter" class="flex items-center gap-2 px-5 py-2.5 bg-terracotta text-white rounded-full text-sm font-medium hover:bg-terra-dark transition shadow-soft">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
+            فیلتر پیشرفته
+          </button>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="productsGrid"></div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 pb-8">
+    <div class="rounded-3xl bg-white/80 border border-[#eadfd2] p-4 md:p-5 flex flex-col md:flex-row md:items-center justify-between gap-3 shadow-sm">
+      <div><b class="text-sm">استایلی با معنا، انتخابی با هویت</b><p class="text-xs text-warm-gray/65 mt-1">مدل‌ها را مقایسه کن، به علاقه‌مندی‌ها اضافه کن و راهنمای سایز لباس را ببین.</p></div>
+      <div class="flex flex-wrap gap-2"><button onclick="openSizeGuide()" class="rounded-full border border-[#dfcfc0] px-4 py-2 text-xs hover:bg-[#f5eee6]">📏 راهنمای سایز لباس</button><button onclick="openOrderTrack()" class="rounded-full border border-[#dfcfc0] px-4 py-2 text-xs hover:bg-[#f5eee6]">📦 پیگیری سفارش</button><button onclick="showFavorites()" class="rounded-full bg-[#496B45] text-white px-4 py-2 text-xs">♡ علاقه‌مندی‌های من</button></div>
+    </div>
+  </section>
+
+  <!-- TRUST / PURCHASE ASSURANCES -->
+  <section id="trust" class="py-14 md:py-16 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-bl from-terracotta/12 via-cream to-beige/15"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10 reveal"><span class="text-xs font-bold tracking-wider text-terracotta">SHOP WITH CONFIDENCE</span><h2 class="text-2xl md:text-3xl font-bold mt-2">خرید با خیال راحت</h2><p class="text-sm text-warm-gray/65 mt-2">آنچه برای یک خرید مطمئن در کنار شماست</p></div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        <article class="trust-card reveal"><div class="trust-icon">🔒</div><h3>پرداخت امن</h3><p>پرداخت از طریق درگاه معتبر بانکی انجام می‌شود و اطلاعات کارت شما نزد فروشگاه ذخیره نمی‌شود.</p></article>
+        <article class="trust-card reveal" style="transition-delay:.06s"><div class="trust-icon">✅</div><h3>ضمانت کیفیت</h3><p>کالا مطابق توضیحات و تصاویر سایت ارسال می‌شود؛ در صورت مغایرت، پیگیری با ماست.</p></article>
+        <article class="trust-card reveal" style="transition-delay:.12s"><div class="trust-icon">💬</div><h3>پشتیبانی</h3><p>برای انتخاب سایز، رنگ و پیگیری سفارش، از گفت‌وگوی سایت یا تماس تلفنی کمک بگیرید.</p></article>
+        <article class="trust-card reveal"><div class="trust-icon">🚚</div><h3>ارسال مطمئن</h3><p>بسته‌بندی ایمن و ارسال به سراسر کشور، همراه با امکان پیگیری سفارش.</p></article>
+        <article class="trust-card reveal" style="transition-delay:.06s"><div class="trust-icon">↩️</div><h3>تعویض و مرجوعی</h3><p>در صورت ایراد یا مغایرت، تعویض و مرجوعی طبق شرایط اعلام‌شده فروشگاه انجام می‌شود.</p></article>
+        <article class="trust-card reveal" style="transition-delay:.12s"><div class="trust-icon">🎁</div><h3>بسته‌بندی هدیه</h3><p>بسته‌بندی شیک و مرتب؛ انتخابی مناسب برای هدیه دادن.</p></article>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-3 mt-8">
+        <button type="button" onclick="openChat()" class="shine-btn rounded-full bg-terracotta text-white px-7 py-3 text-sm font-bold shadow-soft hover:bg-terra-dark transition">💬 گفت‌وگو با پشتیبانی و سؤالات متداول</button>
+        <button type="button" onclick="openOrderTrack()" class="rounded-full border border-soft bg-white px-6 py-3 text-sm hover:bg-soft transition">📦 پیگیری سفارش</button>
+      </div>
+      <p class="text-[10px] text-warm-gray/45 text-center mt-5">متن‌های این بخش نمونه است؛ پیش از انتشار با شرایط واقعی فروشگاه (درگاه پرداخت، ضمانت، مرجوعی) تطبیق داده شود.</p>
+    </div>
+  </section>
+
+  <!-- CUSTOMER VOICES -->
+  <section class="py-14 bg-white/65">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold">تجربه‌ای که مشتری‌ها دوست دارند</h2>
+      <p class="text-sm text-warm-gray/60 mt-2 mb-8">نمونه متن نمایشی؛ نظرهای واقعی مشتریان را جایگزین کنید.</p>
+      <div class="grid md:grid-cols-3 gap-5 text-right">
+        <article class="review-card"><div class="text-amber-500 mb-3">★★★★★</div><p>«بافت پارچه خیلی لطیف بود و رنگش دقیقاً مثل عکس‌هاست.»</p><b>مشتری راضی</b><span class="verified-pill mt-2">✓ خریدار تأییدشده <span class="text-[9px] opacity-70">(نمونه نمایشی)</span></span><small>خرید تیشرت طرح‌دار</small></article>
+        <article class="review-card"><div class="text-amber-500 mb-3">★★★★★</div><p>«بسته‌بندی مرتب و کیفیت دوخت عالی بود. انتخاب خوبی برای استایل روزمره‌ام شد.»</p><b>مشتری راضی</b><span class="verified-pill mt-2">✓ خریدار تأییدشده <span class="text-[9px] opacity-70">(نمونه نمایشی)</span></span><small>خرید هودی چاپی</small></article>
+        <article class="review-card"><div class="text-amber-500 mb-3">★★★★★</div><p>«راهنمایی برای انتخاب سایز خیلی کمکم کرد؛ تجربه خرید دلنشینی بود.»</p><b>مشتری راضی</b><span class="verified-pill mt-2">✓ خریدار تأییدشده <span class="text-[9px] opacity-70">(نمونه نمایشی)</span></span><small>خرید تیشرت اورسایز</small></article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CUSTOMER PHOTO GALLERY -->
+  <section class="py-16 md:py-20 bg-[#f2eee6] overflow-hidden" id="customerGallery">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-9 reveal">
+        <div><span class="text-xs font-bold tracking-wider text-terracotta">REAL HOMES · REAL STORIES</span><h2 class="text-2xl md:text-3xl font-bold mt-2">زیبایی از نگاه خریداران</h2><p class="text-sm text-warm-gray/65 mt-2">گالری عکس‌های ارسالی مشتریان؛ تصاویر فعلی نمونه نمایشی هستند.</p></div>
+        <button type="button" id="openPhotoReview" class="shine-btn rounded-full bg-terracotta text-white px-6 py-3 text-sm font-bold shadow-soft hover:-translate-y-1 transition">＋ ثبت تجربه و عکس من</button>
+      </div>
+      <div id="customerGalleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <article class="customer-shot reveal"><img src="data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E" alt="نمونه تیشرت فرهنگی" loading="lazy"><div class="absolute bottom-4 right-4 left-4 z-10 text-white"><b class="text-sm">انتخاب مشتری رسم</b><p class="text-xs text-white/80 mt-1">تیشرت فرهنگی · استایل روزمره</p><span class="verified-pill mt-2">تصویر نمونه؛ قابل جایگزینی</span></div></article>
+        <article class="customer-shot reveal"><img src="data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E" alt="نمونه تیشرت طرح‌دار" loading="lazy"><div class="absolute bottom-4 right-4 left-4 z-10 text-white"><b class="text-sm">استایل منتخب مشتری</b><p class="text-xs text-white/80 mt-1">تیشرت طرح‌دار · مشکی</p><span class="verified-pill mt-2">تصویر نمونه؛ قابل جایگزینی</span></div></article>
+        <article class="customer-shot reveal"><img src="data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E" alt="استایل پوشاک" loading="lazy"><div class="absolute bottom-4 right-4 left-4 z-10 text-white"><b class="text-sm">انتخاب نازنین</b><p class="text-xs text-white/80 mt-1">ترکیب رنگ گرم</p><span class="verified-pill mt-2">تصویر نمونه؛ قابل جایگزینی</span></div></article>
+        <article class="customer-shot reveal"><img src="data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E" alt="نمونه استایل پوشاک" loading="lazy"><div class="absolute bottom-4 right-4 left-4 z-10 text-white"><b class="text-sm">استایل روزمره</b><p class="text-xs text-white/80 mt-1">پوشاک با طرح خاص</p><span class="verified-pill mt-2">تصویر نمونه؛ قابل جایگزینی</span></div></article>
+      </div>
+      <p class="text-[10px] text-warm-gray/50 text-center mt-5">برای نسخه واقعی، عکس‌ها فقط پس از تأیید مدیر و تطبیق سفارش با حساب خریدار منتشر می‌شوند.</p>
+    </div>
+  </section>
+
+  <!-- PHOTO REVIEW DEMO MODAL -->
+  <div id="photoReviewModal" class="fixed inset-0 z-[130] hidden items-center justify-center bg-black/55 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-3xl w-full max-w-lg p-6 md:p-8 relative modal-content max-h-[90vh] overflow-y-auto">
+      <button id="closePhotoReview" class="absolute top-4 left-4 w-9 h-9 rounded-full bg-soft text-warm-gray">✕</button>
+      <span class="text-xs text-terracotta font-bold">YOUR STORY</span><h3 class="text-xl font-bold mt-2 mb-2">تجربه خریدت رو به اشتراک بگذار</h3><p class="text-xs text-warm-gray/60 mb-5">این فرم در نسخه فعلی نمایشی است و اطلاعات به سرور ارسال نمی‌شود.</p>
+      <form id="photoReviewForm" class="space-y-4">
+        <div><label class="block text-xs font-semibold mb-2" for="reviewCustomerName">نام نمایشی</label><input id="reviewCustomerName" required class="w-full border border-soft rounded-xl p-3 text-sm" placeholder="مثلاً سارا"></div>
+        <div><label class="block text-xs font-semibold mb-2" for="reviewProductName">محصول خریداری‌شده</label><select id="reviewProductName" class="w-full border border-soft rounded-xl p-3 text-sm"><option>تیشرت «یا حسین» مشکی</option><option>هودی طرح پرچم</option><option>تیشرت «لبیک یا مهدی»</option><option>تیشرت اورسایز «هویت»</option></select></div>
+        <div><label class="block text-xs font-semibold mb-2" for="reviewPhotoFile">تصویر اتاق یا محصول</label><input id="reviewPhotoFile" type="file" accept="image/*" class="w-full text-xs border border-soft rounded-xl p-3"><img id="reviewPhotoPreview" class="hidden mt-3 w-full max-h-48 object-cover rounded-xl" alt="پیش‌نمایش تصویر"></div>
+        <div><label class="block text-xs font-semibold mb-2" for="reviewRating">امتیاز شما</label><select id="reviewRating" class="w-full border border-soft rounded-xl p-3 text-sm"><option value="5">★★★★★ عالی</option><option value="4">★★★★☆ خوب</option><option value="3">★★★☆☆ متوسط</option><option value="2">★★☆☆☆ ضعیف</option><option value="1">★☆☆☆☆ بد</option></select></div>
+        <div><label class="block text-xs font-semibold mb-2" for="reviewText">نظر شما</label><textarea id="reviewText" required rows="3" class="w-full border border-soft rounded-xl p-3 text-sm" placeholder="از کیفیت، رنگ و تجربه خریدتان بگویید..."></textarea></div>
+        <button class="w-full bg-terracotta text-white rounded-full py-3 font-bold text-sm" type="submit">ثبت نمایشی تجربه</button>
+      </form>
+      <p id="photoReviewNotice" class="hidden text-xs text-terracotta mt-4 leading-7"></p>
+    </div>
+  </div>
+
+  </div><!-- /homeView -->
+
+  <!-- CATEGORY PAGE (rendered by JS, route: #/category/<key>) -->
+  <main id="categoryPage" class="hidden min-h-[60vh]"><div id="categoryPageContent"></div></main>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-16 md:py-20 bg-gradient-to-bl from-terracotta/10 via-cream to-beige/15">
+    <div class="max-w-4xl mx-auto px-4 text-center reveal">
+      <h2 class="text-2xl md:text-3xl font-bold mb-3">با ما در تماس باشید</h2>
+      <p class="text-warm-gray/70 mb-8">سوالی دارید؟ خوشحال می‌شویم کمکتان کنیم</p>
+      <div class="grid sm:grid-cols-3 gap-6 mb-10">
+        <div class="bg-white rounded-2xl p-6 shadow-card">
+          <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-terracotta/12 flex items-center justify-center">
+            <svg class="w-6 h-6 text-terracotta" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          </div>
+          <h4 class="font-semibold mb-1">تلفن</h4>
+          <p class="text-sm text-warm-gray/70">شماره تماس به‌زودی</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-card">
+          <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-terracotta/12 flex items-center justify-center">
+            <svg class="w-6 h-6 text-terracotta" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h4 class="font-semibold mb-1">ایمیل</h4>
+          <p class="text-sm text-warm-gray/70">info@rasm.shop</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-card">
+          <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-terracotta/12 flex items-center justify-center">
+            <svg class="w-6 h-6 text-terracotta" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h4 class="font-semibold mb-1">آدرس</h4>
+          <p class="text-sm text-warm-gray/70">آدرس فروشگاه به‌زودی اعلام می‌شود</p>
+        </div>
+      </div>
+      <form id="contactForm" class="bg-white rounded-3xl shadow-card p-5 md:p-7 max-w-xl mx-auto mb-8 text-right space-y-3">
+        <h3 class="font-bold">پیام به فروشگاه</h3>
+        <label class="block text-xs font-semibold" for="contactName">نام</label><input id="contactName" class="checkout-input" required minlength="2" placeholder="نام شما">
+        <label class="block text-xs font-semibold" for="contactPhone">شماره تماس (اختیاری)</label><input id="contactPhone" class="checkout-input" inputmode="tel" maxlength="11" placeholder="09123456789">
+        <label class="block text-xs font-semibold" for="contactMsg">پیام</label><textarea id="contactMsg" class="checkout-input min-h-24 resize-y" required minlength="5" placeholder="پیام شما"></textarea>
+        <button class="shine-btn w-full py-3 bg-terracotta text-white rounded-full font-bold">ارسال پیام</button>
+        <p id="contactNotice" class="hidden text-xs text-terracotta leading-7"></p>
+      </form>
+      <a href="tel:" class="shine-btn inline-flex items-center gap-2 px-8 py-3.5 bg-terracotta text-white rounded-full font-medium hover:bg-terra-dark transition shadow-soft">
+        تماس مستقیم
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-terra-dark text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center font-bold">ر</div>
+            <span class="text-xl font-bold">فروشگاه رسم</span>
+          </div>
+          <p class="text-white/65 text-sm leading-relaxed">در رسم، پوشاکی با طرح‌های مذهبی و فرهنگی انتخاب می‌کنیم تا باور و سلیقه‌ات را با افتخار به نمایش بگذاری.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3">لینک‌ها</h4>
+          <ul class="space-y-2 text-sm text-white/65">
+            <li><a href="#home" class="hover:text-white transition">خانه</a></li>
+            <li><a href="#products" class="hover:text-white transition">محصولات</a></li>
+            <li><a href="#bestsellers" class="hover:text-white transition">پرفروش‌ها</a></li>
+            <li><a href="#faq" data-open-chat class="hover:text-white transition">سؤالات متداول</a></li>
+            <li><a href="#contact" class="hover:text-white transition">تماس</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3">تماس</h4>
+          <ul class="space-y-2 text-sm text-white/65">
+            <li>آدرس فروشگاه به‌زودی اعلام می‌شود</li>
+            <li>شماره تماس به‌زودی</li>
+            <li>info@rasm.shop</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/15 mt-8 pt-5 text-center text-sm text-white/45">© <span class="js-year">۱۴۰۵</span> فروشگاه رسم</div>
+    </div>
+  </footer>
+
+  <!-- FLOAT CONTACT BUTTON -->
+  <a href="tel:" class="float-btn" title="تماس با ما">
+    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+  </a>
+
+  <!-- FILTER PANEL -->
+  <div id="filterOverlay" class="filter-overlay fixed inset-0 bg-black/40 z-[60]"></div>
+  <div id="filterPanel" class="filter-panel fixed top-0 right-0 h-full w-full max-w-sm bg-cream z-[70] shadow-2xl overflow-y-auto">
+    <div class="p-6">
+      <div class="flex items-center justify-between mb-8">
+        <h3 class="text-xl font-bold">فیلتر پیشرفته</h3>
+        <button id="closeFilter" class="w-9 h-9 rounded-full bg-soft flex items-center justify-center hover:bg-terracotta/20 transition">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="mb-6">
+        <h4 class="text-sm font-semibold mb-3">سایز لباس</h4>
+        <div class="flex flex-wrap gap-2">
+          <label class="cursor-pointer"><input type="checkbox" class="filter-check hidden" value="single" data-filter="size"><span class="px-3.5 py-1.5 text-xs rounded-full border border-soft bg-white hover:border-terracotta transition block">S</span></label>
+          <label class="cursor-pointer"><input type="checkbox" class="filter-check hidden" value="double" data-filter="size"><span class="px-3.5 py-1.5 text-xs rounded-full border border-soft bg-white hover:border-terracotta transition block">M</span></label>
+          <label class="cursor-pointer"><input type="checkbox" class="filter-check hidden" value="king" data-filter="size"><span class="px-3.5 py-1.5 text-xs rounded-full border border-soft bg-white hover:border-terracotta transition block">L</span></label>
+          <label class="cursor-pointer"><input type="checkbox" class="filter-check hidden" value="kids" data-filter="size"><span class="px-3.5 py-1.5 text-xs rounded-full border border-soft bg-white hover:border-terracotta transition block">XL</span></label>
+        </div>
+      </div>
+      <div class="mb-6">
+        <h4 class="text-sm font-semibold mb-3">رنگ</h4>
+        <div class="flex flex-wrap gap-3">
+          <label class="cursor-pointer"><input type="checkbox" class="filter-check hidden" value="green" data-filter="color"><span class="w-8 h-8 rounded-full bg-[#7D8B70] border-2 border-transparent hover:scale-110 transition block shadow-sm"></span></label>
+          <label class="cursor-pointer"><input type="checkbox" class="filter-check hidden" value="cream" data-filter="color"><span class="w-8 h-8 rounded-full bg-[#E8D9C5] border-2 border-transparent hover:scale-110 transition block shadow-sm"></span></label>
+          <label class="cursor-pointer"><input type="checkbox" class="filter-check hidden" value="white" data-filter="color"><span class="w-8 h-8 rounded-full bg-white border-2 border-soft hover:scale-110 transition block shadow-sm"></span></label>
+          <label class="cursor-pointer"><input type="checkbox" class="filter-check hidden" value="blue" data-filter="color"><span class="w-8 h-8 rounded-full bg-sky-300 border-2 border-transparent hover:scale-110 transition block shadow-sm"></span></label>
+          <label class="cursor-pointer"><input type="checkbox" class="filter-check hidden" value="pink" data-filter="color"><span class="w-8 h-8 rounded-full bg-pink-300 border-2 border-transparent hover:scale-110 transition block shadow-sm"></span></label>
+          <label class="cursor-pointer"><input type="checkbox" class="filter-check hidden" value="black" data-filter="color"><span class="w-8 h-8 rounded-full bg-neutral-900 border-2 border-transparent hover:scale-110 transition block shadow-sm"></span></label>
+        </div>
+      </div>
+      <div class="mb-6">
+        <h4 class="text-sm font-semibold mb-3">جنس</h4>
+        <div class="space-y-2">
+          <label class="flex items-center gap-2.5 cursor-pointer text-sm"><input type="checkbox" class="filter-check accent-terracotta w-4 h-4" value="linen" data-filter="material"><span>پنبه‌ای</span></label>
+          <label class="flex items-center gap-2.5 cursor-pointer text-sm"><input type="checkbox" class="filter-check accent-terracotta w-4 h-4" value="cotton" data-filter="material"><span>پنبه</span></label>
+          <label class="flex items-center gap-2.5 cursor-pointer text-sm"><input type="checkbox" class="filter-check accent-terracotta w-4 h-4" value="satin" data-filter="material"><span>ترکیبی</span></label>
+        </div>
+      </div>
+      <div class="mb-6">
+        <h4 class="text-sm font-semibold mb-3">قیمت (میلیون)</h4>
+        <input type="range" id="priceRange" min="0.5" max="10" step="0.1" value="10" class="w-full" aria-label="حداکثر قیمت">
+        <div class="flex justify-between text-xs text-warm-gray/60 mt-1"><span>۰٫۵</span><span id="priceValue">تا ۱۰ میلیون</span></div>
+      </div>
+      <div class="mb-8">
+        <h4 class="text-sm font-semibold mb-3">طرح</h4>
+        <div class="flex flex-wrap gap-2">
+          <label class="cursor-pointer"><input type="checkbox" class="filter-check hidden" value="plain" data-filter="pattern"><span class="px-3.5 py-1.5 text-xs rounded-full border border-soft bg-white hover:border-terracotta transition block">ساده</span></label>
+          <label class="cursor-pointer"><input type="checkbox" class="filter-check hidden" value="floral" data-filter="pattern"><span class="px-3.5 py-1.5 text-xs rounded-full border border-soft bg-white hover:border-terracotta transition block">گلدار</span></label>
+          <label class="cursor-pointer"><input type="checkbox" class="filter-check hidden" value="geometric" data-filter="pattern"><span class="px-3.5 py-1.5 text-xs rounded-full border border-soft bg-white hover:border-terracotta transition block">هندسی</span></label>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <button id="applyFilter" class="flex-1 py-3.5 bg-terracotta text-white rounded-full font-medium hover:bg-terra-dark transition">اعمال فیلتر</button>
+        <button id="resetFilters" class="px-5 py-3.5 border border-soft rounded-full text-sm hover:bg-soft transition">حذف</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div id="productModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/50" style="backdrop-filter:blur(8px)">
+    <div class="bg-cream rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto modal-content shadow-2xl relative">
+      <button id="closeModal" class="absolute top-4 left-4 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-soft transition z-10">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div class="grid md:grid-cols-2">
+        <div class="bg-soft/40 p-6 md:p-8 flex items-center justify-center">
+          <div class="w-full"><button id="zoomImageBtn" class="block w-full cursor-zoom-in" aria-label="بزرگ‌نمایی تصویر"><img id="modalImage" src="" alt="" class="rounded-2xl w-full h-72 md:h-80 object-cover shadow-card"></button><div id="modalThumbs" class="flex gap-2 mt-3 overflow-x-auto"></div><p class="text-[11px] text-center text-warm-gray/50 mt-2">برای بزرگ‌نمایی روی تصویر بزنید</p></div>
+        </div>
+        <div class="p-6 md:p-8 space-y-5">
+          <div>
+            <span id="modalBadge" class="inline-block px-3 py-1 bg-terracotta/15 text-terracotta text-xs rounded-full mb-2"></span>
+            <h2 id="modalTitle" class="text-2xl font-bold"></h2>
+            <p id="modalPrice" class="text-xl font-bold text-terracotta mt-2"></p>
+            <p id="modalStock" class="text-xs mt-2"></p>
+          </div>
+          <p id="modalDesc" class="text-sm text-warm-gray/75 leading-relaxed"></p>
+          <button id="modalAddCart" class="shine-btn w-full py-3.5 bg-terracotta text-white rounded-full font-medium hover:bg-terra-dark transition shadow-soft">افزودن به سبد خرید 🛍</button>
+          <div class="pt-4 border-t border-soft">
+            <h4 class="text-sm font-semibold mb-2">ویژگی‌ها</h4>
+            <ul id="modalFeatures" class="text-sm text-warm-gray/65 space-y-1"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART DRAWER -->
+  <div id="cartOverlay" class="fixed inset-0 bg-black/40 z-[110] hidden"></div>
+  <aside id="cartDrawer" class="cart-drawer fixed top-0 left-0 h-full w-full max-w-md bg-cream z-[120] shadow-2xl p-5 overflow-y-auto" aria-label="سبد خرید">
+    <div class="flex items-center justify-between mb-6"><h3 class="text-xl font-bold">سبد خرید شما</h3><button id="cartClose" class="w-9 h-9 rounded-full bg-white">✕</button></div>
+    <div id="cartItems" class="space-y-3"></div>
+    <div class="border-t border-soft mt-6 pt-4"><div class="flex justify-between font-bold mb-4"><span>جمع کل</span><span id="cartTotal">۰ تومان</span></div><button id="cartCheckout" class="w-full py-3.5 bg-terracotta text-white rounded-full font-bold">ثبت سفارش</button><p class="text-xs text-warm-gray/55 mt-3">اتصال به درگاه پرداخت پس از راه‌اندازی درگاه فروشگاه انجام می‌شود.</p></div>
+  </aside>
+  <!-- DEMO CHECKOUT -->
+  <div id="checkoutOverlay" class="fixed inset-0 z-[160] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-3 md:p-6" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+    <section class="w-full max-w-3xl max-h-[94vh] overflow-y-auto bg-cream rounded-3xl shadow-2xl p-5 md:p-8">
+      <div class="flex items-center justify-between mb-5">
+        <div><span class="text-xs text-terracotta font-semibold">مرحله پایانی سفارش</span><h2 id="checkoutTitle" class="text-2xl font-bold mt-1">تکمیل اطلاعات سفارش</h2></div>
+        <button id="checkoutClose" type="button" class="w-10 h-10 rounded-full bg-white text-xl" aria-label="بستن">×</button>
+      </div>
+      <div class="demo-ribbon mb-5">🛡️ <b>نسخه نمایشی فروشگاه:</b> این فرم فقط برای نمایش روند ثبت سفارش است. پرداخت آنلاین و ارسال اطلاعات به سرور فعال نیست و هیچ مبلغی دریافت نمی‌شود.</div>
+      <div class="grid md:grid-cols-[1.1fr_.9fr] gap-6">
+        <form id="demoCheckoutForm" class="space-y-4">
+          <div><label for="buyerName" class="block text-xs font-semibold mb-2">نام و نام خانوادگی *</label><input class="checkout-input" id="buyerName" name="buyerName" autocomplete="name" required minlength="3" placeholder="مثلاً: سارا احمدی"></div>
+          <div><label for="buyerPhone" class="block text-xs font-semibold mb-2">شماره موبایل *</label><input class="checkout-input" id="buyerPhone" name="buyerPhone" inputmode="tel" autocomplete="tel" required pattern="09[0-9]{9}" maxlength="11" placeholder="09123456789"><small class="text-[10px] text-warm-gray/55">شماره موبایل ۱۱ رقمی با ۰۹ شروع شود.</small></div>
+          <div><label for="buyerAddress" class="block text-xs font-semibold mb-2">نشانی کامل تحویل *</label><textarea class="checkout-input min-h-24 resize-y" id="buyerAddress" name="buyerAddress" autocomplete="street-address" required minlength="10" placeholder="استان، شهر، خیابان، کوچه، پلاک و واحد"></textarea></div>
+          <div><label for="buyerPostal" class="block text-xs font-semibold mb-2">کد پستی (اختیاری)</label><input class="checkout-input" id="buyerPostal" name="buyerPostal" inputmode="numeric" maxlength="10" pattern="[0-9]{10}" placeholder="۱۰ رقم کد پستی"></div>
+          <div><label for="buyerNote" class="block text-xs font-semibold mb-2">توضیحات سفارش (اختیاری)</label><textarea class="checkout-input min-h-20 resize-y" id="buyerNote" name="buyerNote" placeholder="زمان مناسب تحویل یا توضیح تکمیلی"></textarea></div>
+          <button type="submit" class="shine-btn w-full py-3.5 bg-terracotta text-white rounded-full font-bold hover:bg-terra-dark transition">ثبت آزمایشی سفارش</button>
+          <p class="text-[10px] text-warm-gray/55 text-center">با ثبت سفارش آزمایشی، هیچ پرداخت یا سفارش واقعی انجام نمی‌شود.</p>
+        </form>
+        <aside class="bg-white rounded-2xl p-4 h-fit">
+          <h3 class="font-bold mb-4">خلاصه سفارش</h3>
+          <div id="checkoutItems" class="space-y-3"></div>
+          <div class="border-t border-soft mt-4 pt-4 flex justify-between font-bold"><span>مبلغ قابل پرداخت</span><span id="checkoutTotal" class="text-terracotta">۰ تومان</span></div>
+          <div class="mt-4 rounded-xl bg-[#f3f6f0] p-3 text-xs leading-7 text-warm-gray/70">🚚 روش ارسال و هزینه ارسال در نسخه نهایی پس از هماهنگی با فروشگاه مشخص می‌شود.</div>
+        </aside>
+      </div>
+      <div id="demoOrderSuccess" class="hidden text-center py-8">
+        <div class="text-5xl mb-4">🌿</div><h3 class="text-2xl font-bold text-terra-dark">ثبت آزمایشی با موفقیت انجام شد</h3>
+        <p class="text-sm text-warm-gray/70 mt-3">این فقط یک پیش‌نمایش برای ارائه به مشتری است و سفارش واقعی ثبت یا پرداخت نشده است.</p>
+        <p id="demoOrderNumber" class="text-sm font-bold mt-4"></p>
+        <button id="demoOrderDone" type="button" class="mt-6 px-8 py-3 rounded-full bg-terracotta text-white">بازگشت به فروشگاه</button>
+      </div>
+    </section>
+  </div>
+  <div id="zoomOverlay" class="fixed inset-0 z-[150] hidden items-center justify-center bg-black/90 p-4"><button id="zoomClose" class="absolute top-5 left-5 text-white text-3xl">×</button><img id="zoomedImage" class="max-w-full max-h-[90vh] object-contain rounded-xl" alt="نمای بزرگ محصول"></div>
+
+
+<div id="compareDock" class="compare-dock"><span class="text-xs font-bold whitespace-nowrap">مقایسه <b id="compareCount">۰</b>/۳</span><div id="compareNames" class="text-xs text-warm-gray max-w-[34vw] truncate"></div><button onclick="openCompare()" class="rounded-full bg-[#496B45] text-white px-4 py-2 text-xs">مقایسه کن</button><button onclick="clearCompare()" class="text-xs text-gray-500">×</button></div>
+
+<div id="compareModal" class="premium-modal" onclick="if(event.target===this)closePremium('compareModal')"><div class="premium-box"><div class="flex justify-between items-center mb-5"><div><span class="text-xs text-terracotta font-bold">SMART COMPARISON</span><h3 class="text-xl font-bold mt-1">مقایسه محصولات</h3></div><button onclick="closePremium('compareModal')" class="text-2xl">×</button></div><div id="compareContent" class="overflow-x-auto"></div></div></div>
+<div id="sizeGuideModal" class="premium-modal" onclick="if(event.target===this)closePremium('sizeGuideModal')"><div class="premium-box max-w-xl"><div class="flex justify-between"><h3 class="text-xl font-bold">راهنمای انتخاب سایز</h3><button onclick="closePremium('sizeGuideModal')" class="text-2xl">×</button></div><p class="text-sm text-warm-gray mt-3">اندازه لباس‌ها ممکن است با توجه به مدل و برش متفاوت باشد؛ جدول زیر راهنمای اولیه انتخاب سایز است.</p><div class="grid grid-cols-4 gap-2 mt-5 text-center"><div class="admin-stat"><b>S</b><p class="text-xs mt-2">کوچک</p></div><div class="admin-stat"><b>M</b><p class="text-xs mt-2">متوسط</p></div><div class="admin-stat"><b>L</b><p class="text-xs mt-2">بزرگ</p></div><div class="admin-stat"><b>XL</b><p class="text-xs mt-2">خیلی بزرگ</p></div></div><p class="text-xs text-terracotta mt-4">این اندازه‌ها راهنمای تقریبی‌اند؛ پیش از خرید، جدول اندازه اختصاصی هر محصول را بررسی کنید.</p></div></div>
+<div id="trackModal" class="premium-modal" onclick="if(event.target===this)closePremium('trackModal')"><div class="premium-box max-w-md"><div class="flex justify-between"><h3 class="text-xl font-bold">پیگیری سفارش</h3><button onclick="closePremium('trackModal')" class="text-2xl">×</button></div><p class="text-xs text-warm-gray mt-2">شماره سفارش خود را وارد کنید.</p><input id="trackNumber" class="admin-input mt-4" placeholder="مثلاً DEMO-1234567"><button onclick="trackDemoOrder()" class="mt-3 w-full rounded-full bg-[#496B45] text-white py-3">پیگیری</button><div id="trackResult" class="text-sm mt-4"></div></div></div>
+<div id="adminLoginModal" class="premium-modal" onclick="if(event.target===this)closePremium('adminLoginModal')"><div class="premium-box max-w-md"><div class="text-center"><div class="mx-auto w-14 h-14 rounded-full bg-[#f3e9df] text-[#496B45] flex items-center justify-center text-2xl">♙</div><h3 class="text-xl font-bold mt-3">ورود مدیر فروشگاه</h3><p class="text-xs text-warm-gray mt-2">این قفل فقط برای پیش‌نمایش HTML است و امنیت واقعی سرور ندارد.</p></div><form class="mt-5" onsubmit="event.preventDefault();demoAdminLogin()"><label class="text-xs">رمز ورود نمایشی<input id="demoAdminPass" type="password" class="admin-input mt-2" autocomplete="current-password" placeholder="رمز نمایشی را وارد کنید"></label><p id="demoAdminError" class="text-xs text-red-600 mt-2 hidden">رمز واردشده صحیح نیست.</p><button class="w-full rounded-full bg-[#496B45] text-white py-3 mt-4">ورود به مدیریت</button></form></div></div>
+<div id="adminModal" class="premium-modal" onclick="if(event.target===this)closePremium('adminModal')"><div class="premium-box"><div class="flex justify-between items-start gap-3 mb-5"><div><span class="text-xs font-bold text-terracotta">STORE CONTROL CENTER</span><h3 class="text-2xl font-bold mt-1">مدیریت فروشگاه</h3><p class="text-xs text-warm-gray mt-1">دموی مدیریتی محلی برای بررسی تجربه کاربری</p></div><div class="flex items-center gap-3"><button type="button" onclick="adminLogout()" class="text-xs rounded-full bg-[#f2e9df] px-3 py-2">خروج مدیر</button><button onclick="closePremium('adminModal')" class="text-2xl">×</button></div></div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5"><div class="admin-stat"><small class="text-warm-gray">تعداد محصولات</small><b id="adminProductCount" class="block text-2xl mt-1">۸</b></div><div class="admin-stat"><small class="text-warm-gray">علاقه‌مندی‌ها</small><b id="adminFavCount" class="block text-2xl mt-1">۰</b></div><div class="admin-stat"><small class="text-warm-gray">سفارش‌های آزمایشی</small><b id="adminOrderCount" class="block text-2xl mt-1">۰</b></div><div class="admin-stat"><small class="text-warm-gray">کم‌موجود / ناموجود</small><b id="adminLowCount" class="block text-2xl mt-1">۰</b></div></div>
+<div class="flex flex-wrap gap-2 mb-5"><button class="admin-tab active" onclick="adminTab('products',this)">محصولات</button><button class="admin-tab" onclick="adminTab('orders',this)">سفارش‌ها</button><button class="admin-tab" onclick="adminTab('reviews',this)">نظرات و تصاویر</button><button class="admin-tab" onclick="adminTab('messages',this)">پیام‌ها</button></div>
+<div id="adminProductsPanel"><form id="adminProductForm" class="grid md:grid-cols-2 gap-3 mb-5"><input type="hidden" id="editProductId">
+<label class="text-xs">نام محصول<input id="adminTitle" required class="admin-input mt-1" placeholder="نام محصول یا طرح"></label>
+<label class="text-xs">قیمت (تومان)<input id="adminPrice" type="number" min="0" required class="admin-input mt-1" placeholder="۱۸۹۰۰۰۰"></label>
+<label class="text-xs md:col-span-2">توضیحات کامل محصول<textarea id="adminDesc" rows="3" required class="admin-input mt-1" placeholder="جنس پارچه، تعداد تکه‌ها، ویژگی‌ها و روش شست‌وشو..."></textarea></label>
+<label class="text-xs">نوع طرح<select id="adminPattern" class="admin-input mt-1"><option value="plain">بدون طرح / ساده</option><option value="floral">طرح‌دار / گلدار</option><option value="geometric">طرح هندسی</option><option value="other">سایر طرح‌ها</option></select></label>
+<label class="text-xs">سایز<select id="adminSize" class="admin-input mt-1"><option value="single">S</option><option value="double" selected>M</option><option value="king">L</option><option value="kids">XL</option></select></label>
+<label class="text-xs md:col-span-2">رنگ‌های موجود (نام رنگ‌ها را با ویرگول جدا کن)<input id="adminColors" class="admin-input mt-1" placeholder="سبز زیتونی، کرم، سفید، آبی کاربنی"></label>
+<label class="text-xs">رنگ اصلی محصول<input id="adminColorHex" type="color" value="#8b9b70" class="admin-input mt-1 h-12"></label>
+<label class="text-xs">جنس پارچه<select id="adminMaterial" class="admin-input mt-1"><option value="cotton">نخی</option><option value="linen">پنبه‌ای</option><option value="satin">ترکیبی</option><option value="other">سایر</option></select></label>
+<label class="text-xs">موجودی<input id="adminStock" type="number" min="0" value="5" class="admin-input mt-1"></label>
+<label class="text-xs">قیمت قبل از تخفیف (اختیاری، تومان)<input id="adminOldPrice" type="number" min="0" class="admin-input mt-1" placeholder="مثلاً ۲۱۰۰۰۰۰"></label>
+<label class="text-xs">برچسب محصول<select id="adminBadge" class="admin-input mt-1"><option value="">بدون برچسب</option><option value="جدید">جدید</option><option value="پرفروش">پرفروش</option><option value="محبوب">محبوب</option><option value="لوکس">لوکس</option></select></label>
+<label class="text-xs">تصاویر محصول (چند تصویر انتخاب کن)<input id="adminImages" type="file" accept="image/*" multiple class="admin-input mt-1"></label>
+<div id="adminImagePreview" class="md:col-span-2 flex flex-wrap gap-2"></div>
+<div class="md:col-span-2 flex flex-wrap gap-2"><button class="rounded-full bg-[#496B45] text-white px-6 py-3 text-sm">ذخیره محصول</button><button type="button" onclick="resetAdminForm()" class="rounded-full bg-[#eee5dc] px-5 py-3 text-sm">پاک کردن فرم</button></div></form><input id="adminSearch" type="search" class="admin-input mb-3" placeholder="جستجو در محصولات..." aria-label="جستجو در محصولات"><div id="adminProductList" class="space-y-2"></div></div>
+<div id="adminOtherPanel" class="hidden"></div><div class="mt-4"><button type="button" onclick="resetDemoData()" class="text-xs rounded-full bg-red-50 text-red-600 px-4 py-2">بازنشانی همه داده‌های نمایشی</button></div><p class="text-[11px] text-warm-gray/60 mt-5 border-t pt-4">رمز ورود نمایشی: rasm-demo-2468 (فقط برای مشاهده دموی HTML؛ در کد قابل مشاهده است). این پنل فقط نمونه فرانت‌اند است. اطلاعات و تغییرات در مرورگر همین دستگاه ذخیره می‌شوند؛ ورود امن، ذخیره‌سازی مرکزی، پرداخت، پیام‌رسانی واقعی و مدیریت سفارش سروری هنوز پیاده‌سازی نشده‌اند.</p></div></div>
+
+  <script>
+const products = [
+      { id:1, title:"تیشرت «یا حسین» مشکی", price:890000, image:"data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E", images:["data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E"], size:"double", color:"black", material:"cotton", pattern:"plain", badge:"پرفروش", cat:["tshirt"], desc:"تیشرت نخی راحت با طرح تایپوگرافی مذهبی؛ مناسب استفاده روزمره.", features:["چاپ باکیفیت", "پارچه نرم", "قابل شست\u200cوشو"] },
+      { id:2, title:"هودی طرح پرچم", price:1690000, image:"data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E", images:["data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E"], size:"king", color:"black", material:"cotton", pattern:"plain", badge:"جدید", cat:["hoodie"], desc:"هودی گرم و راحت با طرح فرهنگی؛ مناسب روزهای خنک.", features:["داخل کرکی", "دوخت تمیز", "طرح ماندگار"] },
+      { id:3, title:"تیشرت «لبیک یا مهدی»", price:950000, image:"data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E", images:["data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E"], size:"double", color:"white", material:"cotton", pattern:"plain", badge:"محبوب", cat:["tshirt"], desc:"تیشرت طرح‌دار با پیام اعتقادی و چاپ چشم‌نواز.", features:["پارچه پنبه\u200cای", "چاپ باکیفیت", "مناسب روزمره"] },
+      { id:4, title:"تیشرت اورسایز «هویت»", price:1090000, image:"data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E", images:["data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E"], size:"king", color:"cream", material:"cotton", pattern:"plain", badge:"ویژه", cat:["oversize"], desc:"قالب آزاد و راحت با طراحی مینیمال فرهنگی.", features:["قالب آزاد", "پارچه لطیف", "استایل خیابانی"] },
+      { id:5, title:"سویشرت طرح‌دار", price:1490000, image:"data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E", images:["data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E"], size:"double", color:"green", material:"cotton", pattern:"plain", badge:"جدید", cat:["sweatshirt"], desc:"سویشرت راحت با طرح الهام‌بخش و مناسب استفاده روزانه.", features:["پارچه گرم", "دوخت مقاوم", "استایل روزمره"] },
+      { id:6, title:"پولوشرت ساده رسم", price:1190000, image:"data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E", images:["data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E"], size:"double", color:"black", material:"cotton", pattern:"plain", badge:"", cat:["polo"], desc:"پولوشرت خوش‌فرم برای استایل مرتب و روزمره.", features:["پارچه راحت", "یقه\u200cدار", "دوخت باکیفیت"] },
+      { id:7, title:"هودی مینیمال", price:1590000, image:"data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E", images:["data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E"], size:"king", color:"cream", material:"cotton", pattern:"plain", badge:"پرفروش", cat:["hoodie"], desc:"هودی ساده و خوش‌فرم برای استایل روزانه.", features:["پارچه گرم", "قالب راحت", "مناسب پاییز و زمستان"] },
+      { id:8, title:"کلاه کپ طرح‌دار", price:590000, image:"data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E", images:["data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E"], size:"single", color:"black", material:"cotton", pattern:"plain", badge:"", cat:["accessory"], desc:"کلاه کپ برای تکمیل استایل فرهنگی و روزمره.", features:["سبک و کاربردی", "قابل تنظیم", "مناسب هدیه"] }
+    ];
+
+/* ================= helpers ================= */
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const toEn = s => String(s ?? '').replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+const norm = s => toEn(s).replace(/ي/g, 'ی').replace(/ك/g, 'ک').toLowerCase();
+const fa = n => Number(n).toLocaleString('fa-IR');
+function load(k, d) { try { const v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch (e) { return d; } }
+function save(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } }
+const FALLBACK_IMG = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="800" height="700"><rect width="100%" height="100%" fill="#E6EDE0"/><text x="50%" y="50%" fill="#66865B" font-size="38" text-anchor="middle" font-family="Tahoma">رسم</text></svg>');
+function imgFail(img) { img.onerror = null; img.src = FALLBACK_IMG; }
+let toastTimer;
+function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2800); }
+function formatPrice(p) { return fa(p) + ' تومان'; }
+function compressImage(file, max = 1400, q = 0.76) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = reject;
+    reader.onload = () => {
+      const img = new Image();
+      img.onerror = reject;
+      img.onload = () => {
+        const scale = Math.min(1, max / Math.max(img.width, img.height));
+        const c = document.createElement('canvas');
+        c.width = Math.round(img.width * scale); c.height = Math.round(img.height * scale);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        resolve(c.toDataURL('image/jpeg', q));
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ================= constants ================= */
+const catNames = { tshirt:'تیشرت مذهبی', hoodie:'هودی', sweatshirt:'سویشرت', oversize:'تیشرت اورسایز', polo:'پولوشرت', accessory:'اکسسوری' };
+const COLOR_NAMES = { green:'سبز', cream:'کرم', white:'سفید', blue:'آبی', pink:'صورتی', black:'مشکی' };
+const SIZE_NAMES = { single:'S', double:'M', king:'L', kids:'XL' };
+const MATERIAL_NAMES = { linen:'پنبه‌ای', cotton:'نخی', satin:'ترکیبی', other:'سایر' };
+const ORDER_STATUS = { new:'جدید', processing:'در حال آماده‌سازی', shipped:'ارسال شد', delivered:'تحویل شد', canceled:'لغو شد' };
+const LOW_STOCK = 3;
+const COLOR_REF = { green:[125,139,112], cream:[232,217,197], white:[255,255,255], blue:[125,211,252], pink:[249,168,212] };
+function nearestColor(hex) {
+  const m = /^#?([0-9a-f]{6})$/i.exec(hex || ''); if (!m) return 'green';
+  const n = parseInt(m[1], 16), rgb = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  let best = 'green', bd = Infinity;
+  for (const [k, v] of Object.entries(COLOR_REF)) { const d = v.reduce((s, c, i) => s + (c - rgb[i]) ** 2, 0); if (d < bd) { bd = d; best = k; } }
+  return best;
+}
+
+/* ================= state & persistence ================= */
+const DEFAULT_IDS = products.map(p => p.id);
+let favorites = load('rasmFavorites', []);
+let cart = load('rasmCart', []);
+let compareIds = [];
+let productStocks = load('rasmStocks', {});
+let customProducts = load('rasmExtraProducts', []);   // added or edited products (full objects)
+let deletedIds = load('rasmDeletedIds', []);
+let reviews = load('rasmReviews', []);
+let chat = load('rasmChat', []);
+let contacts = load('rasmContacts', []);
+
+customProducts.forEach(cp => { const i = products.findIndex(p => p.id === cp.id); if (i >= 0) products[i] = cp; else products.push(cp); });
+for (let i = products.length - 1; i >= 0; i--) if (deletedIds.includes(products[i].id)) products.splice(i, 1);
+products.forEach(p => { if (productStocks[p.id] !== undefined) p.stock = productStocks[p.id]; else if (p.stock === undefined) p.stock = (p.id % 3 === 0 ? 3 : 12); });
+
+function isFavorite(id) { return favorites.includes(+id); }
+function getOrders() { return load('rasmDemoOrders', []); }
+function setOrders(o) { return save('rasmDemoOrders', o); }
+
+/* ================= floating leaves ================= */
+const leafLayer = $('natureLeaves');
+['🍃','🌿','🍂','🍃','🌱','🍃'].forEach((leaf, i) => {
+  const el = document.createElement('span'); el.className = 'nature-leaf'; el.textContent = leaf;
+  el.style.left = (8 + i * 16) + '%'; el.style.animationDuration = (13 + i * 2) + 's';
+  el.style.animationDelay = (-i * 2.4) + 's'; el.style.fontSize = (16 + (i % 3) * 6) + 'px';
+  leafLayer.appendChild(el);
+});
+
+/* ================= product cards ================= */
+function priceHtml(p) { return `<span>${formatPrice(p.price)}</span>` + (p.oldPrice > p.price ? `<span class="price-old">${formatPrice(p.oldPrice)}</span>` : ''); }
+function stockHtml(p) {
+  if (p.stock <= 0) return '<span class="stock-low" style="color:#b91c1c">ناموجود</span>';
+  if (p.stock <= LOW_STOCK) return `<span class="stock-low">تنها ${fa(p.stock)} عدد باقی مانده</span>`;
+  return '';
+}
+function createCard(p) {
+  const out = p.stock <= 0;
+  const best = p.badge === 'پرفروش' || p.id === 1 || p.id === 4;
+  const discount = p.oldPrice > p.price ? Math.round((1 - p.price / p.oldPrice) * 100) : 0;
+  const fav = isFavorite(p.id), cmp = compareIds.includes(p.id);
+  return `<article class="product-card bg-white rounded-2xl overflow-hidden shadow-card group" data-id="${p.id}">
+    <div class="relative h-72 md:h-80 overflow-hidden cursor-zoom-in" data-open-product="${p.id}">
+      <div class="product-actions">
+        <button type="button" class="product-action ${fav ? 'active' : ''}" data-favorite="${p.id}" aria-label="علاقه‌مندی">${fav ? '♥' : '♡'}</button>
+        <button type="button" class="product-action ${cmp ? 'active' : ''}" data-compare="${p.id}" aria-label="مقایسه">⇄</button>
+      </div>
+      ${best ? '<span class="best-ribbon"><i>🔥</i> پرفروش داغ</span>' : ''}
+      <img src="${esc(p.image)}" alt="${esc(p.title)}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" loading="lazy" onerror="imgFail(this)">
+      ${out ? '<div class="oos-overlay"><span class="oos-pill">ناموجود</span></div>' : ''}
+      <div class="absolute bottom-3 right-3 z-[5] flex gap-2">${p.badge ? `<span class="px-3 py-1 bg-terracotta text-white text-xs rounded-full font-medium">${esc(p.badge)}</span>` : ''}${discount ? `<span class="discount-pill">٪${fa(discount)} تخفیف</span>` : ''}</div>
+      <span class="absolute bottom-3 left-3 bg-white/90 text-xs px-3 py-1.5 rounded-full">مشاهده جزئیات ⌕</span>
+    </div>
+    <div class="p-4">
+      <h3 class="font-semibold text-[15px] group-hover:text-terracotta transition">${esc(p.title)}</h3>
+      <p class="text-terracotta font-bold mt-1.5">${priceHtml(p)}</p>
+      <div class="mt-1 min-h-[16px]">${stockHtml(p)}</div>
+      <div class="flex flex-wrap items-center gap-2 mt-3 text-[11px] text-warm-gray/70"><span class="meta-pill">${MATERIAL_NAMES[p.material] || '—'}</span><span class="meta-pill">${COLOR_NAMES[p.color] || 'متنوع'}</span><span class="meta-pill">${SIZE_NAMES[p.size] || '—'}</span></div>
+      <button type="button" class="add-cart-btn mt-4 w-full py-2.5 rounded-full text-sm font-semibold transition ${out ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-terracotta text-white hover:bg-terra-dark'}" data-add-cart="${p.id}" ${out ? 'disabled' : ''}>${out ? 'ناموجود' : 'افزودن به سبد خرید <span>＋</span>'}</button>
+    </div>
+  </article>`;
+}
+
+function bestScore(p) { return (p.badge === 'پرفروش' || p.id === 1 || p.id === 4) ? 2 : (p.badge ? 1 : 0); }
+function renderBest() {
+  const list = [...products].sort((a, b) => bestScore(b) - bestScore(a)).slice(0, 6);
+  $('bestTrack').innerHTML = list.map(p => `<div class="min-w-[260px] sm:min-w-[280px] flex-shrink-0">${createCard(p)}</div>`).join('');
+}
+function renderProducts(list, title) {
+  $('productsGrid').innerHTML = list.length
+    ? list.map(createCard).join('')
+    : '<div class="col-span-full text-center py-16 text-warm-gray/60"><div class="text-4xl mb-3">🌿</div>محصولی با این مشخصات پیدا نشد.<br><button type="button" onclick="showAll()" class="mt-4 px-6 py-2.5 rounded-full bg-terracotta text-white text-sm">نمایش همه محصولات</button></div>';
+  $('productCount').textContent = fa(list.length);
+  if (title) $('productsTitle').textContent = title;
+}
+
+function refreshAll() { renderBest(); updateView(false); refreshAdminStats(); updateCompareDock(); updateCatCounts(); if (currentCat) renderCategoryPage(); }
+
+/* ================= filtering / search / sort (one unified view) ================= */
+const state = { cat: null, q: '', favOnly: false };
+function matchesCat(p, cat) {
+  if (!cat) return true;
+  if (cat === 'kids') return (p.cat || []).includes('kids') || p.size === 'single' || p.size === 'kids';
+  if (cat === 'floral') return p.pattern === 'floral';
+  if (cat === 'plain') return p.pattern === 'plain';
+  return p.size === cat;
+}
+function getFilters() {
+  const f = { size: [], color: [], material: [], pattern: [] };
+  document.querySelectorAll('.filter-check:checked').forEach(cb => { if (f[cb.dataset.filter]) f[cb.dataset.filter].push(cb.value); });
+  return f;
+}
+function updateView(scroll) {
+  const f = getFilters();
+  const maxP = parseFloat($('priceRange').value) * 1e6;
+  const priceLimited = parseFloat($('priceRange').value) < parseFloat($('priceRange').max);
+  const filtersActive = f.size.length || f.color.length || f.material.length || f.pattern.length || priceLimited;
+  const q = norm(state.q).trim();
+  let list = products.filter(p => {
+    if (state.favOnly && !isFavorite(p.id)) return false;
+    if (!matchesCat(p, state.cat)) return false;
+    if (q) {
+      const hay = norm([p.title, p.desc, (p.colors || []).join(' '), COLOR_NAMES[p.color], SIZE_NAMES[p.size], MATERIAL_NAMES[p.material], PATTERN_NAMES_FA(p.pattern)].join(' '));
+      if (!q.split(/\s+/).every(w => hay.includes(w))) return false;
+    }
+    if (f.size.length && !f.size.includes(p.size)) return false;
+    if (f.color.length && !f.color.includes(p.color)) return false;
+    if (f.material.length && !f.material.includes(p.material)) return false;
+    if (f.pattern.length && !f.pattern.includes(p.pattern)) return false;
+    if (p.price > maxP) return false;
+    return true;
+  });
+  const sort = $('sortSelect').value;
+  if (sort === 'newest') list.sort((a, b) => b.id - a.id);
+  if (sort === 'price-asc') list.sort((a, b) => a.price - b.price);
+  if (sort === 'price-desc') list.sort((a, b) => b.price - a.price);
+  if (sort === 'popular') list.sort((a, b) => bestScore(b) - bestScore(a));
+  let title = 'همه محصولات';
+  if (state.favOnly) title = 'علاقه‌مندی‌های من';
+  else if (q) title = 'نتایج جستجو';
+  else if (state.cat) title = 'دسته‌بندی: ' + (catNames[state.cat] || state.cat);
+  else if (filtersActive) title = 'نتایج فیلتر';
+  renderProducts(list, title);
+  $('clearView').classList.toggle('hidden', !(state.favOnly || q || state.cat || filtersActive));
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.toggle('ring-2', b.dataset.cat === state.cat));
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.toggle('ring-terracotta', b.dataset.cat === state.cat));
+  if (scroll) $('products').scrollIntoView({ behavior: 'smooth' });
+}
+function PATTERN_NAMES_FA(p) { return ({ plain:'ساده', floral:'گلدار طرح گل', geometric:'هندسی', other:'' })[p] || ''; }
+
+function showAll() {
+  state.cat = null; state.q = ''; state.favOnly = false;
+  $('searchInput').value = '';
+  document.querySelectorAll('.filter-check').forEach(c => { if (c.checked) { c.checked = false; c.dispatchEvent(new Event('change')); } });
+  $('priceRange').value = $('priceRange').max; updatePriceLabel();
+  updateView(false);
+}
+function showFavorites() { state.favOnly = true; state.cat = null; state.q = ''; $('searchInput').value = ''; updateView(true); }
+
+document.querySelectorAll('.cat-btn').forEach(btn => btn.addEventListener('click', () => openCategory(btn.dataset.cat)));
+
+/* filter panel */
+const panel = $('filterPanel'), overlay = $('filterOverlay');
+function openFilterPanel() { panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeFilterPanel() { panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+function updatePriceLabel() { const v = parseFloat($('priceRange').value); $('priceValue').textContent = 'تا ' + v.toLocaleString('fa-IR') + ' میلیون'; }
+$('openFilter').addEventListener('click', openFilterPanel);
+$('closeFilter').addEventListener('click', closeFilterPanel);
+overlay.addEventListener('click', closeFilterPanel);
+$('applyFilter').addEventListener('click', () => { updateView(true); closeFilterPanel(); });
+$('priceRange').addEventListener('input', updatePriceLabel);
+$('sortSelect').addEventListener('change', () => updateView(false));
+$('clearView').addEventListener('click', showAll);
+$('resetFilters').addEventListener('click', () => {
+  document.querySelectorAll('.filter-check').forEach(c => { if (c.checked) { c.checked = false; c.dispatchEvent(new Event('change')); } });
+  $('priceRange').value = $('priceRange').max; updatePriceLabel(); updateView(false);
+});
+document.querySelectorAll('.filter-check').forEach(cb => cb.addEventListener('change', () => {
+  const span = cb.nextElementSibling;
+  if (!span || span.tagName !== 'SPAN' || !cb.classList.contains('hidden')) return;
+  if (span.classList.contains('w-8')) { span.style.outline = cb.checked ? '3px solid #66865B' : 'none'; span.style.outlineOffset = '2px'; return; }
+  span.classList.toggle('bg-terracotta', cb.checked); span.classList.toggle('text-white', cb.checked);
+  span.classList.toggle('border-terracotta', cb.checked); span.classList.toggle('bg-white', !cb.checked);
+}));
+
+/* header search + mobile menu */
+$('searchToggle').addEventListener('click', () => {
+  const bar = $('searchBar'); bar.classList.toggle('hidden');
+  if (!bar.classList.contains('hidden')) $('searchInput').focus();
+});
+$('searchInput').addEventListener('input', e => { const wasCat = !!currentCat; if (wasCat) { showHomeView(); location.hash = ''; } state.q = e.target.value; state.favOnly = false; state.cat = null; updateView(false); if (wasCat) setTimeout(() => $('products').scrollIntoView({ behavior: 'smooth' }), 60); });
+$('searchInput').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); $('products').scrollIntoView({ behavior: 'smooth' }); } });
+$('searchClear').addEventListener('click', () => { $('searchInput').value = ''; state.q = ''; updateView(false); $('searchInput').focus(); });
+$('menuToggle').addEventListener('click', () => $('mobileMenu').classList.toggle('hidden'));
+document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => $('mobileMenu').classList.add('hidden')));
+
+/* ================= category pages (hash routing: #/category/<key>) ================= */
+const CATEGORY_INFO = {
+  tshirt: { title: 'تیشرت مذهبی', icon: '👕', img: 'data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E', sub: 'تیشرت‌هایی با طرح‌ها و نوشته‌های الهام‌گرفته از فرهنگ، ایمان و هویت؛ مناسب استفاده روزمره.', facts: [['🧵', 'پارچه راحت', 'مناسب استفاده روزانه'], ['🎨', 'طرح‌های خاص', 'چاپ باکیفیت و ماندگار'], ['📏', 'سایزبندی', 'از S تا XL']] },
+  hoodie: { title: 'هودی مذهبی', icon: '🧥', img: 'data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E', sub: 'هودی‌های گرم و راحت با طرح‌های فرهنگی و مذهبی برای روزهای خنک.', facts: [['☁️', 'پارچه گرم', 'مناسب فصل سرد'], ['🎨', 'طرح اختصاصی', 'استایل متفاوت'], ['📏', 'سایزبندی', 'از S تا XL']] },
+  sweatshirt: { title: 'سویشرت', icon: '🧶', img: 'data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E', sub: 'سویشرت‌های ساده و طرح‌دار با استایلی راحت و قابل استفاده در موقعیت‌های مختلف.', facts: [['🧵', 'دوخت باکیفیت', 'توجه به جزئیات'], ['🎨', 'طرح متنوع', 'هماهنگ با سلیقه شما'], ['📏', 'سایزبندی', 'از S تا XL']] },
+  oversize: { title: 'تیشرت اورسایز', icon: '✨', img: 'data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E', sub: 'مدل‌های آزاد و راحت برای استایل خیابانی و روزمره.', facts: [['👕', 'قالب آزاد', 'راحت و امروزی'], ['🎨', 'طرح‌های خاص', 'چاپ الهام‌بخش'], ['📏', 'راهنمای اندازه', 'قبل از خرید بررسی شود']] },
+  polo: { title: 'پولوشرت', icon: '👔', img: 'data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E', sub: 'پولوشرت‌های مرتب و خوش‌فرم برای استایل نیمه‌رسمی و روزانه.', facts: [['🧵', 'پارچه راحت', 'مناسب استفاده روزانه'], ['✨', 'ظاهر مرتب', 'استایل ساده و شیک'], ['📏', 'سایزبندی', 'از S تا XL']] },
+  accessory: { title: 'اکسسوری', icon: '🧢', img: 'data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22700%22 viewBox=%220 0 800 700%22%3E%3Crect width=%22800%22 height=%22700%22 fill=%22%23E6EDE0%22/%3E%3Ctext x=%2250%25%22 y=%2248%25%22 fill=%22%2366865B%22 font-size=%2242%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%B1%D8%B3%D9%85%3C/text%3E%3Ctext x=%2250%25%22 y=%2258%25%22 fill=%22%237C8275%22 font-size=%2220%22 text-anchor=%22middle%22 font-family=%22Tahoma%22%3E%D8%AA%D8%B5%D9%88%DB%8C%D8%B1%20%D9%85%D8%AD%D8%B5%D9%88%D9%84%3C/text%3E%3C/svg%3E', sub: 'اکسسوری‌های مکمل استایل با حال‌وهوای فرهنگی و مذهبی.', facts: [['🧢', 'تکمیل استایل', 'انتخابی کاربردی'], ['🎁', 'مناسب هدیه', 'برای علاقه‌مندان'], ['🎨', 'طرح هماهنگ', 'با مجموعه رسم']] }
+};
+const COLOR_HEX = { green: '#7D8B70', cream: '#E8D9C5', white: '#FFFFFF', blue: '#7dd3fc', pink: '#f9a8d4', black: '#222222' };
+const HOME_TITLE = document.title;
+let currentCat = null;
+let catState = { sort: 'newest', material: '', color: '' };
+function showCategoryView(cat) {
+  if (!CATEGORY_INFO[cat]) return;
+  if (currentCat !== cat) catState = { sort: 'newest', material: '', color: '' };
+  currentCat = cat;
+  $('homeView').classList.add('hidden'); $('categoryPage').classList.remove('hidden');
+  document.title = CATEGORY_INFO[cat].title + ' | فروشگاه رسم';
+  renderCategoryPage(); window.scrollTo(0, 0);
+}
+function showHomeView() {
+  currentCat = null; $('categoryPage').classList.add('hidden'); $('homeView').classList.remove('hidden'); document.title = HOME_TITLE;
+}
+function routeFromHash() {
+  const m = /^#\/category\/([a-z]+)$/.exec(location.hash);
+  if (m && CATEGORY_INFO[m[1]]) showCategoryView(m[1]); else if (currentCat) showHomeView();
+}
+window.addEventListener('hashchange', routeFromHash);
+function openCategory(cat) { showCategoryView(cat); location.hash = '#/category/' + cat; }
+function scrollToTarget(t) { const el = t ? document.querySelector(t) : null; if (el) el.scrollIntoView({ behavior: 'smooth' }); else window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function goHome(target) {
+  const el = target ? document.querySelector(target) : null;
+  const inHome = el && $('homeView').contains(el);
+  if (currentCat && (!target || inHome)) { showHomeView(); location.hash = ''; setTimeout(() => scrollToTarget(target), 60); return; }
+  scrollToTarget(target);
+}
+function updateCatCounts() {
+  document.querySelectorAll('.cat-btn').forEach(b => {
+    let c = b.querySelector('.cat-count');
+    if (!c) { c = document.createElement('span'); c.className = 'cat-count'; b.appendChild(c); }
+    c.textContent = fa(products.filter(p => matchesCat(p, b.dataset.cat)).length) + ' محصول';
+  });
+}
+function renderCategoryPage() {
+  const info = CATEGORY_INFO[currentCat]; if (!info) return;
+  const all = products.filter(p => matchesCat(p, currentCat));
+  const list = all.filter(p => (!catState.material || p.material === catState.material) && (!catState.color || p.color === catState.color));
+  if (catState.sort === 'price-asc') list.sort((a, b) => a.price - b.price);
+  else if (catState.sort === 'price-desc') list.sort((a, b) => b.price - a.price);
+  else if (catState.sort === 'popular') list.sort((a, b) => bestScore(b) - bestScore(a));
+  else list.sort((a, b) => b.id - a.id);
+  const mats = [...new Set(all.map(p => p.material))].filter(Boolean);
+  const cols = [...new Set(all.map(p => p.color))].filter(Boolean);
+  const chip = (type, val, label, on) => `<button type="button" data-cat-filter="${type}:${val}" class="px-4 py-2 rounded-full text-xs border transition ${on ? 'bg-terracotta text-white border-terracotta' : 'bg-white border-soft hover:border-terracotta'}">${label}</button>`;
+  const sortOpt = (v, l) => `<option value="${v}" ${catState.sort === v ? 'selected' : ''}>${l}</option>`;
+  const others = Object.keys(CATEGORY_INFO).filter(k => k !== currentCat);
+  $('categoryPageContent').innerHTML = `
+    <section class="relative h-64 md:h-80 overflow-hidden">
+      <img src="${esc(info.img)}" alt="" class="absolute inset-0 w-full h-full object-cover" onerror="imgFail(this)">
+      <div class="absolute inset-0 bg-gradient-to-l from-black/70 via-black/45 to-black/20"></div>
+      <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center text-white">
+        <nav class="text-xs text-white/75 mb-3 flex items-center gap-2" aria-label="مسیر"><button type="button" data-go-home class="hover:text-white">خانه</button><span>‹</span><button type="button" data-go-home="#categories" class="hover:text-white">دسته‌بندی‌ها</button><span>‹</span><span class="text-white">${esc(info.title)}</span></nav>
+        <h1 class="text-3xl md:text-5xl font-bold drop-shadow">${info.icon} ${esc(info.title)}</h1>
+        <p class="mt-3 text-white/85 max-w-xl text-sm md:text-base leading-8">${esc(info.sub)}</p>
+        <span class="mt-4 inline-block self-start px-4 py-1.5 bg-white/15 backdrop-blur-md text-xs rounded-full border border-white/25">${fa(all.length)} محصول در این دسته</span>
+      </div>
+    </section>
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">${info.facts.map(f => `<div class="benefit-card"><span>${f[0]}</span><b>${esc(f[1])}</b><small>${esc(f[2])}</small></div>`).join('')}</div>
+    </section>
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+        <div class="flex flex-wrap items-center gap-2">
+          ${mats.length > 1 ? `<span class="text-xs text-warm-gray/60 ml-1">جنس:</span>${mats.map(m => chip('material', m, MATERIAL_NAMES[m] || m, catState.material === m)).join('')}` : ''}
+          ${cols.length > 1 ? `<span class="text-xs text-warm-gray/60 mr-3 ml-1">رنگ:</span>${cols.map(c => chip('color', c, `<span class="inline-block w-3 h-3 rounded-full border border-black/10 ml-1 align-middle" style="background:${COLOR_HEX[c] || '#ccc'}"></span>${COLOR_NAMES[c] || c}`, catState.color === c)).join('')}` : ''}
+          ${(catState.material || catState.color) ? '<button type="button" data-cat-filter="reset:" class="text-xs text-terracotta underline mr-2">پاک کردن فیلترها</button>' : ''}
+        </div>
+        <div class="flex items-center gap-3"><span class="text-xs text-warm-gray/60">${fa(list.length)} نتیجه</span>
+          <select id="catSortSel" class="text-sm border border-soft rounded-full px-4 py-2.5 bg-white focus:outline-none focus:border-terracotta" aria-label="مرتب‌سازی">${sortOpt('newest', 'جدیدترین')}${sortOpt('price-asc', 'ارزان‌ترین')}${sortOpt('price-desc', 'گران‌ترین')}${sortOpt('popular', 'پرفروش‌ترین')}</select></div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">${list.length ? list.map(createCard).join('') : '<div class="col-span-full text-center py-16 text-warm-gray/60"><div class="text-4xl mb-3">🌿</div>محصولی با این مشخصات در این دسته نیست.<br><button type="button" data-cat-filter="reset:" class="mt-4 px-6 py-2.5 rounded-full bg-terracotta text-white text-sm">پاک کردن فیلترها</button></div>'}</div>
+      <div class="mt-14">
+        <h2 class="font-bold text-lg mb-4">دسته‌بندی‌های دیگر</h2>
+        <div class="flex flex-wrap gap-3">${others.map(k => `<button type="button" data-open-category="${k}" class="flex items-center gap-2 px-5 py-3 rounded-2xl bg-white shadow-card hover:shadow-soft hover:-translate-y-1 transition text-sm"><span>${CATEGORY_INFO[k].icon}</span>${esc(CATEGORY_INFO[k].title)}</button>`).join('')}</div>
+        <button type="button" data-go-home class="mt-8 rounded-full border border-soft bg-white px-6 py-3 text-sm hover:bg-soft transition">← بازگشت به صفحهٔ اصلی</button>
+      </div>
+    </section>`;
+}
+$('categoryPageContent').addEventListener('change', e => { if (e.target.id === 'catSortSel') { catState.sort = e.target.value; renderCategoryPage(); } });
+
+/* ================= hero ================= */
+let heroIndex = 0;
+const slides = document.querySelectorAll('.hero-slide'), dots = document.querySelectorAll('.hero-dot');
+function goHero(i) {
+  heroIndex = (i + slides.length) % slides.length;
+  slides.forEach((s, idx) => s.classList.toggle('active', idx === heroIndex));
+  dots.forEach((d, idx) => { d.style.width = idx === heroIndex ? '24px' : '10px'; d.style.background = idx === heroIndex ? '#fff' : 'rgba(255,255,255,0.45)'; d.setAttribute('aria-label', 'اسلاید ' + (idx + 1)); });
+}
+$('heroNext').addEventListener('click', () => goHero(heroIndex + 1));
+$('heroPrev').addEventListener('click', () => goHero(heroIndex - 1));
+dots.forEach(d => d.addEventListener('click', () => goHero(+d.dataset.index)));
+let heroTimer = setInterval(() => goHero(heroIndex + 1), 5200);
+$('home').addEventListener('mouseenter', () => clearInterval(heroTimer));
+$('home').addEventListener('mouseleave', () => { clearInterval(heroTimer); heroTimer = setInterval(() => goHero(heroIndex + 1), 5200); });
+
+/* ================= bestsellers carousel (mouse drag only; touch scrolls natively) ================= */
+const wrapper = $('bestWrapper');
+let dragStart = null, dragStartX = 0, dragMoved = false;
+$('bestNext').addEventListener('click', () => wrapper.scrollBy({ left: -320, behavior: 'smooth' }));
+$('bestPrev').addEventListener('click', () => wrapper.scrollBy({ left: 320, behavior: 'smooth' }));
+wrapper.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' || e.button !== 0) return; dragStart = e.clientX; dragStartX = e.clientX; dragMoved = false; });
+window.addEventListener('pointermove', e => {
+  if (dragStart === null) return;
+  if (Math.abs(e.clientX - dragStartX) > 5) dragMoved = true;
+  if (dragMoved) { wrapper.scrollLeft -= (e.clientX - dragStart); wrapper.classList.add('dragging'); }
+  dragStart = e.clientX;
+});
+['pointerup', 'pointercancel'].forEach(ev => window.addEventListener(ev, () => { dragStart = null; wrapper.classList.remove('dragging'); }));
+
+/* ================= product modal ================= */
+const modal = $('productModal');
+let currentProduct = null;
+function openModal(id) {
+  const p = products.find(x => x.id == id); if (!p) return; currentProduct = p;
+  const gallery = (p.images && p.images.length) ? p.images : [p.image];
+  const mi = $('modalImage'); mi.onerror = function () { imgFail(this); }; mi.src = gallery[0]; mi.alt = p.title;
+  $('modalThumbs').innerHTML = gallery.map((src, i) => `<button type="button" class="gallery-thumb ${i === 0 ? 'selected' : ''}" data-gallery-src="${esc(src)}"><img src="${esc(src)}" alt="نمای ${fa(i + 1)} ${esc(p.title)}" onerror="imgFail(this)"></button>`).join('');
+  $('modalTitle').textContent = p.title;
+  $('modalPrice').innerHTML = priceHtml(p);
+  $('modalDesc').textContent = p.desc || '';
+  $('modalBadge').textContent = p.badge || 'رسم';
+  const st = $('modalStock'); st.innerHTML = p.stock <= 0 ? '<span style="color:#b91c1c;font-weight:700">ناموجود</span>' : (p.stock <= LOW_STOCK ? `<span class="stock-low">تنها ${fa(p.stock)} عدد باقی مانده</span>` : '<span style="color:#496b45;font-weight:600">موجود در انبار</span>');
+  const feats = [...(p.features || []), 'رنگ: ' + (COLOR_NAMES[p.color] || 'متنوع'), 'جنس: ' + (MATERIAL_NAMES[p.material] || '—'), 'سایز: ' + (SIZE_NAMES[p.size] || '—')];
+  if (p.colors && p.colors.length) feats.push('رنگ‌های موجود: ' + p.colors.join('، '));
+  $('modalFeatures').innerHTML = feats.map(f => `<li>• ${esc(f)}</li>`).join('');
+  const btn = $('modalAddCart'); btn.disabled = p.stock <= 0; btn.textContent = p.stock <= 0 ? 'ناموجود' : 'افزودن به سبد خرید 🛍';
+  btn.classList.toggle('opacity-50', p.stock <= 0);
+  modal.classList.remove('hidden'); modal.classList.add('flex'); document.body.style.overflow = 'hidden';
+}
+function closeProductModal() { modal.classList.add('hidden'); modal.classList.remove('flex'); document.body.style.overflow = ''; }
+$('modalThumbs').addEventListener('click', e => { const b = e.target.closest('[data-gallery-src]'); if (!b) return; $('modalImage').src = b.dataset.gallerySrc; document.querySelectorAll('.gallery-thumb').forEach(x => x.classList.toggle('selected', x === b)); });
+$('zoomImageBtn').addEventListener('click', () => { $('zoomedImage').src = $('modalImage').src; $('zoomOverlay').classList.remove('hidden'); $('zoomOverlay').classList.add('flex'); });
+function closeZoom() { $('zoomOverlay').classList.add('hidden'); $('zoomOverlay').classList.remove('flex'); }
+$('zoomClose').addEventListener('click', closeZoom);
+$('zoomOverlay').addEventListener('click', e => { if (e.target.id === 'zoomOverlay') closeZoom(); });
+$('closeModal').addEventListener('click', closeProductModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeProductModal(); });
+
+/* ================= cart ================= */
+function sanitizeCart() {
+  cart = cart.map(x => { const p = products.find(q => q.id === x.id); return p ? { id: x.id, qty: Math.min(x.qty, p.stock) } : null; }).filter(x => x && x.qty > 0);
+}
+function cartRows() { return cart.map(x => ({ ...x, p: products.find(p => p.id === x.id) })).filter(x => x.p); }
+function saveCart() { save('rasmCart', cart); renderCart(); }
+function addToCart(id) {
+  const p = products.find(x => x.id == id); if (!p) return false;
+  if (p.stock <= 0) { toast('این محصول فعلاً ناموجود است'); return false; }
+  const row = cart.find(x => x.id == id), cur = row ? row.qty : 0;
+  if (cur + 1 > p.stock) { toast('حداکثر موجودی این محصول ' + fa(p.stock) + ' عدد است'); return false; }
+  if (row) row.qty++; else cart.push({ id: p.id, qty: 1 });
+  saveCart();
+  const badge = $('cartCount'); badge.classList.remove('cart-bump'); void badge.offsetWidth; badge.classList.add('cart-bump');
+  return true;
+}
+function renderCart() {
+  const rows = cartRows();
+  $('cartCount').textContent = fa(rows.reduce((n, x) => n + x.qty, 0));
+  $('cartItems').innerHTML = rows.length ? rows.map(x => `<div class="flex gap-3 items-center bg-white rounded-xl p-3"><img src="${esc(x.p.image)}" alt="${esc(x.p.title)}" class="w-20 h-20 rounded-lg object-cover" onerror="imgFail(this)"><div class="flex-1"><b class="text-sm">${esc(x.p.title)}</b><p class="text-xs text-terracotta mt-1">${formatPrice(x.p.price)}</p><div class="flex items-center gap-3 mt-2"><button type="button" class="qty-btn" data-qty="${x.id}" data-delta="-1" aria-label="کم کردن">−</button><span>${fa(x.qty)}</span><button type="button" class="qty-btn" data-qty="${x.id}" data-delta="1" aria-label="زیاد کردن">＋</button><button type="button" class="text-xs text-red-500 mr-auto" data-remove="${x.id}">حذف</button></div></div></div>`).join('') : '<div class="text-center py-14 text-warm-gray/60">سبد خرید شما هنوز خالی است 🌿</div>';
+  $('cartTotal').textContent = formatPrice(rows.reduce((n, x) => n + x.p.price * x.qty, 0));
+}
+function openCart() { $('cartDrawer').classList.add('open'); $('cartOverlay').classList.remove('hidden'); }
+function closeCart() { $('cartDrawer').classList.remove('open'); $('cartOverlay').classList.add('hidden'); }
+$('cartOpen').addEventListener('click', openCart);
+$('cartClose').addEventListener('click', closeCart);
+$('cartOverlay').addEventListener('click', closeCart);
+$('modalAddCart').addEventListener('click', () => {
+  if (!currentProduct) return;
+  if (addToCart(currentProduct.id)) { const b = $('modalAddCart'); b.textContent = 'به سبد خرید اضافه شد ✓'; setTimeout(() => { b.textContent = 'افزودن به سبد خرید 🛍'; }, 1200); }
+});
+
+/* ================= global click delegation ================= */
+document.addEventListener('click', e => {
+  const t = e.target;
+  if (dragMoved && t.closest('#bestWrapper')) { dragMoved = false; e.preventDefault(); return; }
+  const oc = t.closest('[data-open-category]');
+  if (oc) { openCategory(oc.dataset.openCategory); return; }
+  const gh = t.closest('[data-go-home]');
+  if (gh) { goHome(gh.dataset.goHome || null); return; }
+  const cf = t.closest('[data-cat-filter]');
+  if (cf) {
+    const [type, val] = cf.dataset.catFilter.split(':');
+    if (type === 'reset') { catState.material = ''; catState.color = ''; }
+    else catState[type] = catState[type] === val ? '' : val;
+    renderCategoryPage(); return;
+  }
+  const fav = t.closest('[data-favorite]');
+  if (fav) {
+    const id = +fav.dataset.favorite;
+    favorites = isFavorite(id) ? favorites.filter(x => x !== id) : [...favorites, id];
+    save('rasmFavorites', favorites);
+    document.querySelectorAll(`[data-favorite="${id}"]`).forEach(b => { b.classList.toggle('active', isFavorite(id)); b.textContent = isFavorite(id) ? '♥' : '♡'; });
+    refreshAdminStats();
+    if (state.favOnly) updateView(false);
+    return;
+  }
+  const cmp = t.closest('[data-compare]');
+  if (cmp) {
+    const id = +cmp.dataset.compare;
+    if (compareIds.includes(id)) compareIds = compareIds.filter(x => x !== id);
+    else if (compareIds.length < 3) compareIds.push(id);
+    else { toast('حداکثر سه محصول را می‌توانید مقایسه کنید.'); return; }
+    document.querySelectorAll(`[data-compare="${id}"]`).forEach(b => b.classList.toggle('active', compareIds.includes(id)));
+    updateCompareDock();
+    return;
+  }
+  const add = t.closest('[data-add-cart]');
+  if (add) {
+    if (addToCart(+add.dataset.addCart)) {
+      const orig = add.innerHTML; add.classList.add('added'); add.innerHTML = 'اضافه شد ✓';
+      setTimeout(() => { add.classList.remove('added'); add.innerHTML = orig; }, 1100);
+    }
+    return;
+  }
+  const qty = t.closest('[data-qty]');
+  if (qty) {
+    const id = +qty.dataset.qty, d = +qty.dataset.delta, item = cart.find(x => x.id === id), p = products.find(x => x.id === id);
+    if (item && p) {
+      if (d > 0 && item.qty >= p.stock) { toast('موجودی این محصول بیشتر از این نیست'); return; }
+      item.qty += d; if (item.qty <= 0) cart = cart.filter(x => x !== item);
+      saveCart();
+    }
+    return;
+  }
+  const rem = t.closest('[data-remove]');
+  if (rem) { cart = cart.filter(x => x.id !== +rem.dataset.remove); saveCart(); return; }
+  const card = t.closest('article.product-card[data-id]');
+  if (card) openModal(card.dataset.id);
+});
+
+/* ================= checkout (demo) ================= */
+const checkoutOverlay = $('checkoutOverlay');
+function openCheckout() {
+  sanitizeCart(); renderCart();
+  const rows = cartRows();
+  if (!rows.length) { toast('سبد خرید شما خالی است. ابتدا محصولی انتخاب کنید.'); return; }
+  $('checkoutItems').innerHTML = rows.map(x => `<div class="flex items-center gap-3"><img src="${esc(x.p.image)}" alt="${esc(x.p.title)}" class="w-14 h-14 rounded-xl object-cover" onerror="imgFail(this)"><div class="min-w-0 flex-1"><b class="block text-xs">${esc(x.p.title)}</b><small class="text-warm-gray/60">تعداد: ${fa(x.qty)}</small></div><b class="text-xs whitespace-nowrap">${formatPrice(x.p.price * x.qty)}</b></div>`).join('');
+  $('checkoutTotal').textContent = $('cartTotal').textContent;
+  $('demoCheckoutForm').classList.remove('hidden'); document.querySelector('#checkoutOverlay aside').classList.remove('hidden'); $('demoOrderSuccess').classList.add('hidden');
+  closeCart(); checkoutOverlay.classList.remove('hidden'); checkoutOverlay.classList.add('flex'); document.body.style.overflow = 'hidden';
+}
+function closeCheckout() { checkoutOverlay.classList.add('hidden'); checkoutOverlay.classList.remove('flex'); document.body.style.overflow = ''; }
+$('cartCheckout').addEventListener('click', openCheckout);
+$('checkoutClose').addEventListener('click', closeCheckout);
+checkoutOverlay.addEventListener('click', e => { if (e.target === checkoutOverlay) closeCheckout(); });
+$('demoOrderDone').addEventListener('click', closeCheckout);
+['buyerPhone', 'buyerPostal'].forEach(id => $(id).addEventListener('input', e => { e.target.value = toEn(e.target.value).replace(/\D/g, ''); }));
+$('demoCheckoutForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const form = e.currentTarget; if (!form.reportValidity()) return;
+  const rows = cartRows();
+  if (!rows.length) { toast('سبد خرید خالی است'); closeCheckout(); return; }
+  const short = rows.find(r => r.qty > r.p.stock);
+  if (short) { toast('موجودی «' + short.p.title + '» کافی نیست'); sanitizeCart(); renderCart(); closeCheckout(); openCart(); return; }
+  const orderNo = 'DEMO-' + Date.now().toString().slice(-7);
+  const order = {
+    number: orderNo, createdAt: new Date().toISOString(), status: 'new',
+    customer: { name: form.buyerName.value.trim(), phone: form.buyerPhone.value.trim(), address: form.buyerAddress.value.trim(), postalCode: form.buyerPostal.value.trim(), note: form.buyerNote.value.trim() },
+    items: rows.map(r => ({ id: r.id, title: r.p.title, price: r.p.price, qty: r.qty })),
+    total: rows.reduce((s, r) => s + r.p.price * r.qty, 0)
+  };
+  const orders = getOrders(); orders.push(order); setOrders(orders);
+  rows.forEach(r => { r.p.stock = Math.max(0, r.p.stock - r.qty); productStocks[r.p.id] = r.p.stock; });
+  save('rasmStocks', productStocks);
+  form.classList.add('hidden'); document.querySelector('#checkoutOverlay aside').classList.add('hidden');
+  $('demoOrderSuccess').classList.remove('hidden'); $('demoOrderNumber').textContent = 'شماره پیگیری نمایشی: ' + orderNo;
+  form.reset(); cart = []; saveCart(); refreshAll();
+});
+
+/* ================= reviews / photo gallery ================= */
+const photoModal = $('photoReviewModal');
+let reviewImageData = null;
+function stars(n) { n = Math.max(1, Math.min(5, +n || 5)); return '★'.repeat(n) + '☆'.repeat(5 - n); }
+function renderApprovedReviews() {
+  const grid = $('customerGalleryGrid');
+  grid.querySelectorAll('.js-review').forEach(n => n.remove());
+  reviews.filter(r => r.status === 'approved').forEach(r => {
+    const el = document.createElement('article');
+    el.className = (r.image ? 'customer-shot' : 'review-card') + ' js-review';
+    el.innerHTML = r.image
+      ? `<img src="${esc(r.image)}" alt="تصویر ارسالی ${esc(r.name)}" loading="lazy" onerror="imgFail(this)"><div class="absolute bottom-4 right-4 left-4 z-10 text-white"><b class="text-sm">${esc(r.name)}</b><div class="text-amber-300 text-xs">${stars(r.rating)}</div><p class="text-xs text-white/85 mt-1">${esc(r.text)}</p></div>`
+      : `<div class="text-amber-500 mb-3">${stars(r.rating)}</div><p>${esc(r.text)}</p><b>${esc(r.name)}</b><small>${esc(r.product)}</small>`;
+    grid.appendChild(el);
+  });
+}
+$('openPhotoReview').addEventListener('click', () => { photoModal.classList.remove('hidden'); photoModal.classList.add('flex'); document.body.style.overflow = 'hidden'; });
+function closePhotoModal() { photoModal.classList.add('hidden'); photoModal.classList.remove('flex'); document.body.style.overflow = ''; }
+$('closePhotoReview').addEventListener('click', closePhotoModal);
+photoModal.addEventListener('click', e => { if (e.target === photoModal) closePhotoModal(); });
+$('reviewPhotoFile').addEventListener('change', async e => {
+  const f = e.target.files[0], img = $('reviewPhotoPreview');
+  reviewImageData = null;
+  if (!f) { img.classList.add('hidden'); return; }
+  if (!f.type.startsWith('image/')) { toast('لطفاً یک تصویر انتخاب کنید.'); e.target.value = ''; img.classList.add('hidden'); return; }
+  try { reviewImageData = await compressImage(f, 900, 0.7); img.src = reviewImageData; img.classList.remove('hidden'); }
+  catch (err) { toast('خواندن تصویر انجام نشد.'); e.target.value = ''; img.classList.add('hidden'); }
+});
+$('photoReviewForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const r = { id: 'R' + Date.now(), name: $('reviewCustomerName').value.trim(), product: $('reviewProductName').value, rating: +$('reviewRating').value, text: $('reviewText').value.trim(), image: reviewImageData, status: 'pending', createdAt: new Date().toISOString() };
+  reviews.push(r);
+  if (!save('rasmReviews', reviews)) { r.image = null; if (!save('rasmReviews', reviews)) { reviews.pop(); toast('ذخیره‌سازی مرورگر پر است.'); return; } toast('حجم تصویر زیاد بود؛ نظر بدون تصویر ثبت شد.'); }
+  $('photoReviewNotice').textContent = 'ممنون! تجربه‌ات ثبت شد و پس از تأیید مدیر در گالری نمایش داده می‌شود. (نسخه نمایشی: فقط در همین مرورگر ذخیره می‌شود.)';
+  $('photoReviewNotice').classList.remove('hidden');
+  e.target.reset(); reviewImageData = null; $('reviewPhotoPreview').classList.add('hidden');
+  refreshAdminStats();
+});
+
+/* ================= support chat + contact form ================= */
+const chatPanel = $('supportChatPanel');
+const FAQ = [
+  { q: 'چطور سایز مناسب لباس را انتخاب کنم؟', a: 'یکی از لباس‌های مناسب خود را روی سطح صاف اندازه بگیرید و با جدول سایزبندی همان محصول مقایسه کنید. قالب لباس‌ها ممکن است متفاوت باشد؛ اگر بین دو سایز مردد بودید از پشتیبانی راهنمایی بگیرید.' },
+  { q: 'چطور از تیشرت‌های چاپی نگهداری کنیم؟', a: 'روش شست‌وشو به جنس پارچه و نوع چاپ بستگی دارد. لباس را پشت‌ورو و طبق دستور شست‌وشوی درج‌شده روی محصول بشویید؛ از اتوی مستقیم روی چاپ خودداری کنید.' },
+  { q: 'ارسال سفارش چقدر طول می‌کشد؟', a: 'زمان و هزینهٔ ارسال پس از تأیید سفارش و بر اساس شهر شما اعلام می‌شود.' },
+  { q: 'امکان تعویض یا مرجوعی وجود دارد؟', a: 'در صورت وجود ایراد یا مغایرت کالا با توضیحات سایت، تعویض یا مرجوعی طبق شرایط فروشگاه انجام می‌شود. لطفاً پس از دریافت، سریع‌تر به ما اطلاع دهید.' },
+  { q: 'سفارشم را چطور پیگیری کنم؟', a: 'از دکمهٔ «پیگیری سفارش» (زیر لیست محصولات) شمارهٔ سفارشی که بعد از ثبت دریافت کرده‌اید را وارد کنید تا وضعیت سفارش را ببینید.' },
+  { q: 'پرداخت چطور انجام می‌شود؟', a: 'پرداخت آنلاین از طریق درگاه معتبر بانکی انجام می‌شود و اطلاعات کارت شما نزد فروشگاه ذخیره نمی‌شود. (در نسخهٔ نمایشی هنوز پرداختی انجام نمی‌شود.)' },
+  { q: 'با پشتیبانی انسانی صحبت کنم', a: 'حتماً! سؤالتان را همین‌جا بنویسید و ارسال کنید؛ پشتیبان پس از بررسی در همین گفت‌وگو پاسخ می‌دهد.' }
+];
+function renderFaqChips() {
+  $('chatFaq').innerHTML = '<small>سؤالات متداول — روی سؤال بزنید تا پاسخش بیاید</small>' + FAQ.map((f, i) => `<button type="button" class="faq-chip" data-faq="${i}">${esc(f.q)}</button>`).join('');
+}
+function askFaq(i) {
+  const f = FAQ[i]; if (!f) return;
+  chat = load('rasmChat', chat);
+  chat.push({ from: 'customer', text: f.q, faq: true, t: Date.now() });
+  save('rasmChat', chat); renderChat();
+  setTimeout(() => {
+    chat = load('rasmChat', chat);
+    chat.push({ from: 'agent', text: f.a, faq: true, t: Date.now() });
+    save('rasmChat', chat); renderChat();
+  }, 450);
+}
+function openChat() {
+  chatPanel.classList.add('open'); chat = load('rasmChat', chat); renderChat();
+  const box = $('supportChatMessages'); box.scrollTop = box.scrollHeight;
+}
+$('chatFaq').addEventListener('click', e => { const b = e.target.closest('[data-faq]'); if (b) askFaq(+b.dataset.faq); });
+function ensureGreeting() {
+  if (!chat.length) { chat.push({ from: 'agent', text: 'سلام، خوش اومدید 🌿\nبرای انتخاب سایز، رنگ یا پیگیری سفارش چطور می‌تونیم کمکتون کنیم؟', t: Date.now() }); save('rasmChat', chat); }
+}
+function renderChat() {
+  const box = $('supportChatMessages');
+  box.innerHTML = chat.map(m => `<div class="chat-bubble ${m.from === 'customer' ? 'customer' : 'agent'}">${esc(m.text).replace(/\n/g, '<br>')}</div>`).join('');
+  box.scrollTop = box.scrollHeight;
+}
+$('supportChatToggle').addEventListener('click', () => { chatPanel.classList.toggle('open'); if (chatPanel.classList.contains('open')) { chat = load('rasmChat', chat); renderChat(); $('supportChatInput').focus(); } });
+$('supportChatClose').addEventListener('click', () => chatPanel.classList.remove('open'));
+$('supportChatForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const input = $('supportChatInput'), msg = input.value.trim(); if (!msg) return;
+  const first = !chat.some(m => m.from === 'customer' && !m.faq);
+  chat.push({ from: 'customer', text: msg, t: Date.now() });
+  if (first) chat.push({ from: 'agent', text: 'پیامتون ثبت شد. پشتیبان در همین‌جا پاسخ می‌دهد. (نسخه نمایشی)', t: Date.now() });
+  save('rasmChat', chat); input.value = ''; renderChat(); refreshAdminStats();
+});
+window.addEventListener('storage', e => {
+  if (e.key === 'rasmChat') { chat = load('rasmChat', []); renderChat(); }
+});
+$('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  contacts.push({ name: $('contactName').value.trim(), phone: toEn($('contactPhone').value).trim(), text: $('contactMsg').value.trim(), t: Date.now() });
+  save('rasmContacts', contacts);
+  $('contactNotice').textContent = 'پیام شما ثبت شد. (نسخه نمایشی: پیام در صندوق مدیریت همین مرورگر دیده می‌شود.)';
+  $('contactNotice').classList.remove('hidden'); e.target.reset(); refreshAdminStats();
+});
+
+/* ================= compare / size guide / order tracking ================= */
+function updateCompareDock() {
+  compareIds = compareIds.filter(id => products.some(p => p.id === id));
+  $('compareCount').textContent = fa(compareIds.length);
+  $('compareNames').textContent = compareIds.map(id => (products.find(p => p.id === id) || {}).title).filter(Boolean).join('، ');
+  $('compareDock').classList.toggle('show', compareIds.length > 0);
+}
+function openCompare() {
+  if (compareIds.length < 2) { toast('برای مقایسه، حداقل دو محصول انتخاب کنید.'); return; }
+  const list = compareIds.map(id => products.find(p => p.id === id)).filter(Boolean);
+  const rows = [
+    ['قیمت', p => formatPrice(p.price)], ['رنگ', p => COLOR_NAMES[p.color] || 'متنوع'], ['سایز', p => SIZE_NAMES[p.size] || p.size],
+    ['جنس', p => MATERIAL_NAMES[p.material] || '—'], ['وضعیت موجودی', p => p.stock <= 0 ? 'ناموجود' : (p.stock <= LOW_STOCK ? 'تعداد محدود' : 'موجود')]
+  ];
+  $('compareContent').innerHTML = `<table class="w-full text-sm text-right"><thead><tr><th></th>${list.map(p => `<th class="p-3 min-w-[170px]"><img src="${esc(p.image)}" alt="${esc(p.title)}" class="w-full h-32 object-cover rounded-xl mb-2" onerror="imgFail(this)"><b>${esc(p.title)}</b></th>`).join('')}</tr></thead><tbody>${rows.map(([label, fn]) => `<tr class="border-t"><th class="p-3 text-warm-gray">${label}</th>${list.map(p => `<td class="p-3">${esc(fn(p))}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+  openPremium('compareModal');
+}
+function clearCompare() { compareIds = []; updateCompareDock(); document.querySelectorAll('[data-compare]').forEach(b => b.classList.remove('active')); }
+function openPremium(id) { $(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closePremium(id) { $(id).classList.remove('open'); document.body.style.overflow = ''; }
+function openSizeGuide() { openPremium('sizeGuideModal'); }
+function openOrderTrack() { $('trackResult').innerHTML = ''; openPremium('trackModal'); }
+function orderItemsText(o) {
+  return (o.items || []).map(i => { const t = i.title || (products.find(p => p.id === i.id) || {}).title || ('محصول ' + i.id); return esc(t) + ' × ' + fa(i.qty); }).join('، ');
+}
+function trackDemoOrder() {
+  const n = toEn($('trackNumber').value).trim().toUpperCase();
+  const o = getOrders().find(x => x.number === n);
+  $('trackResult').innerHTML = o
+    ? `<div class="admin-stat"><b>سفارش پیدا شد</b><p class="mt-2">${esc(o.customer.name)}</p><p class="text-xs mt-1">${orderItemsText(o)}</p><p class="mt-1">مبلغ: ${formatPrice(o.total)}</p><p class="text-xs mt-1">تاریخ ثبت: ${new Date(o.createdAt).toLocaleDateString('fa-IR')}</p><p class="text-terracotta mt-2 font-bold">وضعیت: ${ORDER_STATUS[o.status] || 'جدید'}</p></div>`
+    : '<p class="text-terracotta">سفارشی با این شماره در سفارش‌های آزمایشی این مرورگر پیدا نشد.</p>';
+}
+$('trackNumber').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); trackDemoOrder(); } });
+
+/* ================= admin (demo gate: password is visible in source, NOT real security) ================= */
+const DEMO_ADMIN_PASSWORD = 'rasm-demo-2468';
+const ADMIN_TABS = ['products', 'orders', 'reviews', 'messages'];
+let adminCurrentTab = 'products';
+let adminImgState = [];
+function isAdmin() { try { return sessionStorage.getItem('rasmAdmin') === '1'; } catch (e) { return false; } }
+function openAdmin() {
+  if (isAdmin()) { showAdminPanel(); return; }
+  $('demoAdminPass').value = ''; $('demoAdminError').classList.add('hidden'); openPremium('adminLoginModal');
+  setTimeout(() => $('demoAdminPass').focus(), 50);
+}
+function demoAdminLogin() {
+  if ($('demoAdminPass').value !== DEMO_ADMIN_PASSWORD) { $('demoAdminError').classList.remove('hidden'); return; }
+  try { sessionStorage.setItem('rasmAdmin', '1'); } catch (e) { }
+  closePremium('adminLoginModal'); showAdminPanel();
+}
+function showAdminPanel() { resetAdminForm(); adminTab('products'); refreshAdminStats(); openPremium('adminModal'); }
+function adminLogout() { try { sessionStorage.removeItem('rasmAdmin'); } catch (e) { } closePremium('adminModal'); toast('از پنل مدیریت خارج شدید'); }
+function refreshAdminStats() {
+  $('adminProductCount').textContent = fa(products.length);
+  $('adminFavCount').textContent = fa(favorites.length);
+  $('adminOrderCount').textContent = fa(getOrders().length);
+  $('adminLowCount').textContent = fa(products.filter(p => p.stock <= LOW_STOCK).length);
+}
+function adminTab(tab) {
+  adminCurrentTab = tab;
+  document.querySelectorAll('.admin-tab').forEach((b, i) => b.classList.toggle('active', ADMIN_TABS[i] === tab));
+  $('adminProductsPanel').classList.toggle('hidden', tab !== 'products');
+  $('adminOtherPanel').classList.toggle('hidden', tab === 'products');
+  if (tab === 'products') renderAdminProducts(); else renderAdminOther();
+}
+function renderAdminProducts() {
+  const q = norm($('adminSearch').value).trim();
+  const list = products.filter(p => !q || norm(p.title).includes(q));
+  $('adminProductList').innerHTML = list.map(p => {
+    const low = p.stock <= LOW_STOCK;
+    return `<div class="flex items-center gap-3 bg-white rounded-xl border border-[#eee3d7] p-2 flex-wrap"><img src="${esc(p.image)}" alt="" class="w-14 h-14 rounded-lg object-cover" onerror="imgFail(this)"><div class="flex-1 min-w-[150px]"><b class="text-xs">${esc(p.title)}</b><p class="text-[11px] text-warm-gray">${formatPrice(p.price)}${p.oldPrice > p.price ? ' (قبل: ' + formatPrice(p.oldPrice) + ')' : ''} · ${p.pattern === 'plain' ? 'بدون طرح' : 'طرح‌دار'}</p></div><label class="text-[11px] ${low ? 'text-red-600 font-bold' : 'text-warm-gray'}">موجودی <input type="number" min="0" value="${p.stock}" onchange="setStock(${p.id},this.value)" class="w-16 border rounded-lg px-2 py-1 text-xs"></label><button type="button" onclick="editAdminProduct(${p.id})" class="text-xs rounded-full bg-[#f2e9df] px-3 py-2">ویرایش</button><button type="button" onclick="deleteAdminProduct(${p.id})" class="text-xs rounded-full bg-red-50 text-red-600 px-3 py-2">حذف</button></div>`;
+  }).join('') || '<p class="text-sm text-warm-gray">محصولی پیدا نشد.</p>';
+  refreshAdminStats();
+}
+$('adminSearch').addEventListener('input', renderAdminProducts);
+function persistProduct(p) {
+  const next = customProducts.filter(x => x.id !== p.id); next.push(p);
+  if (!save('rasmExtraProducts', next)) return false;
+  customProducts = next; return true;
+}
+function setStock(id, v) {
+  const p = products.find(x => x.id === id); if (!p) return;
+  p.stock = Math.max(0, Math.floor(+v || 0)); productStocks[id] = p.stock; save('rasmStocks', productStocks);
+  sanitizeCart(); renderCart(); renderBest(); updateView(false); renderAdminProducts();
+}
+function renderAdminImgPreview(newFiles) {
+  $('adminImagePreview').innerHTML = adminImgState.map((src, i) => `<span class="relative inline-block"><img src="${esc(src)}" alt="" class="w-16 h-16 object-cover rounded-lg border"><button type="button" onclick="removeAdminImg(${i})" class="absolute -top-1 -left-1 w-5 h-5 rounded-full bg-red-600 text-white text-[10px]" aria-label="حذف تصویر">✕</button></span>`).join('')
+    + (newFiles || []).map(f => `<span class="text-xs bg-[#f4eee5] rounded-lg px-3 py-2">${esc(f.name)}</span>`).join('');
+}
+function removeAdminImg(i) { adminImgState.splice(i, 1); renderAdminImgPreview([...$('adminImages').files]); }
+function resetAdminForm() { $('adminProductForm').reset(); $('editProductId').value = ''; adminImgState = []; renderAdminImgPreview([]); }
+function editAdminProduct(id) {
+  const p = products.find(x => x.id === id); if (!p) return;
+  $('editProductId').value = id; $('adminTitle').value = p.title; $('adminPrice').value = p.price; $('adminOldPrice').value = p.oldPrice || '';
+  $('adminDesc').value = p.desc || ''; $('adminPattern').value = p.pattern || 'plain'; $('adminSize').value = p.size || 'double';
+  $('adminColors').value = (p.colors || []).join('، '); $('adminColorHex').value = p.colorHex || '#8b9b70';
+  $('adminMaterial').value = p.material || 'cotton'; $('adminStock').value = p.stock ?? 0; $('adminBadge').value = p.badge || '';
+  adminImgState = (p.images && p.images.length ? p.images : [p.image]).filter(Boolean); $('adminImages').value = '';
+  renderAdminImgPreview([]); $('adminProductForm').scrollIntoView({ behavior: 'smooth' });
+}
+function deleteAdminProduct(id) {
+  if (!confirm('این محصول از فروشگاه حذف شود؟')) return;
+  const nextDeleted = DEFAULT_IDS.includes(id) && !deletedIds.includes(id) ? [...deletedIds, id] : deletedIds;
+  const nextCustom = customProducts.filter(p => p.id !== id);
+  if (!save('rasmDeletedIds', nextDeleted) || !save('rasmExtraProducts', nextCustom)) { toast('ذخیره‌سازی انجام نشد.'); return; }
+  deletedIds = nextDeleted; customProducts = nextCustom;
+  const i = products.findIndex(p => p.id === id); if (i >= 0) products.splice(i, 1);
+  favorites = favorites.filter(x => x !== id); save('rasmFavorites', favorites);
+  compareIds = compareIds.filter(x => x !== id); sanitizeCart(); saveCart();
+  refreshAll(); renderAdminProducts();
+}
+$('adminImages').addEventListener('change', e => renderAdminImgPreview([...e.target.files]));
+$('adminProductForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  try {
+    const id = +$('editProductId').value || Math.max(0, ...products.map(p => p.id), ...deletedIds) + 1;
+    const old = products.find(p => p.id === id);
+    const files = [...$('adminImages').files];
+    let imgs = [...adminImgState];
+    if (files.length) imgs = [...imgs, ...(await Promise.all(files.map(f => compressImage(f))))];
+    if (!imgs.length) { toast('برای محصول حداقل یک تصویر انتخاب کن.'); return; }
+    const price = +$('adminPrice').value, oldPrice = +$('adminOldPrice').value || 0;
+    if (oldPrice && oldPrice <= price) { toast('قیمت قبل از تخفیف باید بیشتر از قیمت فعلی باشد.'); return; }
+    const size = $('adminSize').value, pattern = $('adminPattern').value, material = $('adminMaterial').value, hex = $('adminColorHex').value;
+    const item = {
+      ...(old || {}), id, title: $('adminTitle').value.trim(), price, oldPrice, desc: $('adminDesc').value.trim(),
+      image: imgs[0], images: imgs, color: nearestColor(hex), colors: $('adminColors').value.split(/[,،]/).map(x => x.trim()).filter(Boolean), colorHex: hex,
+      size, material, pattern, cat: [size, pattern], stock: Math.max(0, +$('adminStock').value || 0), badge: $('adminBadge').value,
+      features: old && old.features && old.features.length ? old.features : [MATERIAL_NAMES[material], SIZE_NAMES[size]]
+    };
+    if (!persistProduct(item)) { toast('حجم تصاویر برای ذخیره در مرورگر زیاد است. برای نسخه واقعی تصاویر باید روی هاست ذخیره شوند.'); return; }
+    const ix = products.findIndex(p => p.id === id); if (ix >= 0) products[ix] = item; else products.push(item);
+    productStocks[id] = item.stock; save('rasmStocks', productStocks);
+    sanitizeCart(); saveCart(); refreshAll(); renderAdminProducts(); resetAdminForm();
+    toast('محصول ذخیره شد.');
+  } catch (err) { toast('پردازش تصاویر انجام نشد؛ لطفاً تصاویر دیگری انتخاب کن.'); }
+});
+
+/* admin: orders / reviews / messages */
+function setOrderStatus(number, status) {
+  const orders = getOrders(), o = orders.find(x => x.number === number); if (!o) return;
+  const adjust = sign => (o.items || []).forEach(i => { const p = products.find(x => x.id === i.id); if (p) { p.stock = Math.max(0, p.stock + sign * i.qty); productStocks[p.id] = p.stock; } });
+  if (status === 'canceled' && !o.restocked) { adjust(+1); o.restocked = true; }
+  else if (status !== 'canceled' && o.restocked) { adjust(-1); o.restocked = false; }
+  o.status = status; setOrders(orders); save('rasmStocks', productStocks);
+  sanitizeCart(); renderCart(); refreshAll(); renderAdminOther();
+}
+function deleteOrder(number) { if (!confirm('این سفارش حذف شود؟')) return; setOrders(getOrders().filter(o => o.number !== number)); refreshAdminStats(); renderAdminOther(); }
+function approveReview(id) { const r = reviews.find(x => x.id === id); if (!r) return; r.status = 'approved'; save('rasmReviews', reviews); renderApprovedReviews(); renderAdminOther(); refreshAdminStats(); }
+function deleteReview(id) { if (!confirm('این نظر حذف شود؟')) return; reviews = reviews.filter(x => x.id !== id); save('rasmReviews', reviews); renderApprovedReviews(); renderAdminOther(); }
+function sendAdminReply() {
+  const input = $('adminReplyInput'), msg = input.value.trim(); if (!msg) return;
+  chat = load('rasmChat', chat); chat.push({ from: 'agent', text: msg, t: Date.now() }); save('rasmChat', chat);
+  renderChat(); renderAdminOther();
+}
+function deleteContact(i) { contacts.splice(i, 1); save('rasmContacts', contacts); renderAdminOther(); refreshAdminStats(); }
+function resetDemoData() {
+  if (!confirm('همه داده‌های نمایشی (سفارش‌ها، نظرات، پیام‌ها، تغییرات محصولات و سبد) پاک شود؟')) return;
+  ['rasmFavorites', 'rasmCart', 'rasmStocks', 'rasmExtraProducts', 'rasmDeletedIds', 'rasmReviews', 'rasmChat', 'rasmContacts', 'rasmDemoOrders'].forEach(k => { try { localStorage.removeItem(k); } catch (e) { } });
+  location.reload();
+}
+function renderAdminOther() {
+  const o = $('adminOtherPanel');
+  if (adminCurrentTab === 'orders') {
+    const orders = getOrders().slice().reverse();
+    const sum = orders.filter(x => x.status !== 'canceled').reduce((s, x) => s + (x.total || 0), 0);
+    o.innerHTML = `<h4 class="font-bold mb-1">سفارش‌های ثبت‌شده در این مرورگر</h4><p class="text-xs text-warm-gray mb-3">جمع سفارش‌های غیرلغوشده: <b>${formatPrice(sum)}</b></p>` + (orders.length ? orders.map(x => `<div class="admin-stat mb-2"><div class="flex flex-wrap items-center justify-between gap-2"><b>${esc(x.number)}</b><select class="admin-input !w-auto !py-1.5 text-xs" onchange="setOrderStatus('${esc(x.number)}',this.value)">${Object.entries(ORDER_STATUS).map(([k, v]) => `<option value="${k}" ${(x.status === k || (!ORDER_STATUS[x.status] && k === 'new')) ? 'selected' : ''}>${v}</option>`).join('')}</select></div><p class="text-xs mt-2">${esc(x.customer.name)} · ${esc(x.customer.phone)} · ${formatPrice(x.total)}</p><p class="text-[11px] text-warm-gray mt-1">${orderItemsText(x)}</p><p class="text-[11px] text-warm-gray mt-1">نشانی: ${esc(x.customer.address)}${x.customer.postalCode ? ' · کدپستی: ' + esc(x.customer.postalCode) : ''}</p>${x.customer.note ? `<p class="text-[11px] text-warm-gray mt-1">توضیح: ${esc(x.customer.note)}</p>` : ''}<div class="flex items-center justify-between mt-2"><small class="text-warm-gray">${new Date(x.createdAt).toLocaleDateString('fa-IR')}</small><button type="button" onclick="deleteOrder('${esc(x.number)}')" class="text-[11px] text-red-600">حذف سفارش</button></div></div>`).join('') : '<p class="text-sm text-warm-gray">هنوز سفارش آزمایشی ثبت نشده است.</p>');
+  } else if (adminCurrentTab === 'reviews') {
+    const list = reviews.slice().reverse();
+    o.innerHTML = '<h4 class="font-bold mb-3">نظرات و تصاویر مشتریان</h4>' + (list.length ? list.map(r => `<div class="admin-stat mb-2 flex gap-3 items-start">${r.image ? `<img src="${esc(r.image)}" alt="" class="w-20 h-20 rounded-lg object-cover">` : ''}<div class="flex-1 min-w-0"><div class="flex items-center justify-between gap-2"><b class="text-sm">${esc(r.name)}</b><span class="text-xs ${r.status === 'approved' ? 'text-terra-dark' : 'text-amber-700'}">${r.status === 'approved' ? 'منتشرشده' : 'در انتظار تأیید'}</span></div><div class="text-amber-500 text-xs">${stars(r.rating)}</div><p class="text-xs mt-1">${esc(r.text)}</p><small class="text-warm-gray">${esc(r.product)}</small><div class="flex gap-2 mt-2">${r.status !== 'approved' ? `<button type="button" onclick="approveReview('${esc(r.id)}')" class="text-xs rounded-full bg-terra-dark text-white px-3 py-1.5">تأیید و انتشار</button>` : ''}<button type="button" onclick="deleteReview('${esc(r.id)}')" class="text-xs rounded-full bg-red-50 text-red-600 px-3 py-1.5">حذف</button></div></div></div>`).join('') : '<p class="text-sm text-warm-gray">هنوز نظری ثبت نشده است. نظرهای ارسالی از فرم «ثبت تجربه و عکس من» اینجا برای تأیید می‌آیند.</p>');
+  } else if (adminCurrentTab === 'messages') {
+    chat = load('rasmChat', chat);
+    o.innerHTML = `<h4 class="font-bold mb-3">گفت‌وگوی پشتیبانی</h4><div class="admin-stat max-h-64 overflow-y-auto mb-3">${chat.map(m => `<div class="text-xs mb-2 ${m.from === 'customer' ? '' : 'text-left'}"><span class="inline-block rounded-xl px-3 py-2 ${m.from === 'customer' ? 'bg-[#edf5e9]' : 'bg-white border'}"><b>${m.from === 'customer' ? 'مشتری' : 'فروشگاه'}${m.faq ? ' · سؤال متداول' : ''}:</b> ${esc(m.text)}</span></div>`).join('') || '<p class="text-xs text-warm-gray">گفت‌وگویی وجود ندارد.</p>'}</div><form class="flex gap-2 mb-6" onsubmit="event.preventDefault();sendAdminReply()"><input id="adminReplyInput" class="admin-input" placeholder="پاسخ به مشتری..." autocomplete="off"><button class="rounded-full bg-terra-dark text-white px-5 text-sm">ارسال</button></form><h4 class="font-bold mb-3">پیام‌های فرم تماس</h4>${contacts.length ? contacts.map((c, i) => `<div class="admin-stat mb-2"><div class="flex justify-between"><b class="text-sm">${esc(c.name)}</b><button type="button" onclick="deleteContact(${i})" class="text-[11px] text-red-600">حذف</button></div>${c.phone ? `<p class="text-xs text-warm-gray">${esc(c.phone)}</p>` : ''}<p class="text-xs mt-1">${esc(c.text)}</p></div>`).join('') : '<p class="text-sm text-warm-gray">پیامی از فرم تماس دریافت نشده است.</p>'}`;
+  }
+}
+
+/* ================= misc: scroll reveal, anchors, to-top, escape ================= */
+if ('IntersectionObserver' in window) {
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); }), { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+} else document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  e.preventDefault();
+  if (a.hasAttribute('data-open-chat')) { openChat(); return; }
+  const h = a.getAttribute('href');
+  goHome(h === '#' ? null : h);
+}));
+window.addEventListener('scroll', () => $('toTop').classList.toggle('show', window.scrollY > 700), { passive: true });
+$('toTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if (!$('zoomOverlay').classList.contains('hidden')) { closeZoom(); return; }
+  ['compareModal', 'sizeGuideModal', 'trackModal', 'adminLoginModal', 'adminModal'].forEach(id => { if ($(id).classList.contains('open')) closePremium(id); });
+  if (!checkoutOverlay.classList.contains('hidden')) closeCheckout();
+  if (!photoModal.classList.contains('hidden')) closePhotoModal();
+  closeProductModal(); closeCart(); closeFilterPanel(); chatPanel.classList.remove('open');
+});
+
+/* ================= init ================= */
+(function init() {
+  const year = new Date().toLocaleDateString('fa-IR', { year: 'numeric' });
+  document.querySelectorAll('.js-year').forEach(el => { el.textContent = year; });
+  sanitizeCart(); renderCart();
+  $('priceRange').value = $('priceRange').max; updatePriceLabel();
+  renderBest(); updateView(false);
+  renderApprovedReviews(); ensureGreeting(); renderChat(); renderFaqChips(); updateCatCounts(); routeFromHash();
+  updateCompareDock(); refreshAdminStats(); goHero(0);
+})();
+
+</script>
+</body>
+</html>
